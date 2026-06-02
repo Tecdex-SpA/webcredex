@@ -227,6 +227,8 @@ export default function App() {
 
       <Contact />
 
+      <CorfoSupport />
+
       <section className="py-24 bg-white">
         <div className="max-w-4xl mx-auto px-6">
           <h2 className="text-3xl md:text-4xl font-semibold mb-6 text-gray-900">
@@ -264,7 +266,7 @@ export default function App() {
           </p>
         </div>
       </section>
-      <CorfoSupport />
+
       <Footer />
     </>
   );
