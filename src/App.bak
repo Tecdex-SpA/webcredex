@@ -1,0 +1,163 @@
+import React, { Suspense } from "react";
+
+// normales
+import Chatbot from "./components/Chatbot";
+import Header from "./components/Header";
+import Hero from "./components/Hero";
+import SegmentSwitcher from "./components/SegmentSwitcher";
+import Problem from "./components/Problem";
+import Impact from "./components/Impact";
+import MachineLearning from "./components/MachineLearning";
+// import Clients from "./components/Clients";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
+// import { TestimonialTop, TestimonialBottom } from "./components/Testimonials";
+
+// lazy
+const ProductPreview = React.lazy(() => import("./components/ProductPreview"));
+const Flow = React.lazy(() => import("./components/Flow"));
+const BeforeAfter = React.lazy(() => import("./components/BeforeAfter"));
+const Services = React.lazy(() => import("./components/Services"));
+const Security = React.lazy(() => import("./components/Security"));
+// const Integrations = React.lazy(() => import("./components/Integrations"));
+
+// SEO
+import { Helmet } from "react-helmet-async";
+import { useLocation } from "react-router-dom";
+
+export default function App() {
+
+  const location = useLocation();
+
+  const seo = {
+    "/": {
+      title: "Evaluación crediticia para empresas en Chile | Scoring y Machine Learning | Credex",
+      desc: "Plataforma de evaluación crediticia para empresas en Chile. Automatiza decisiones, reduce incobrables y aumenta aprobación con scoring y Machine Learning."
+    },
+    "/evaluacion-crediticia": {
+      title: "Evaluación crediticia para empresas en Chile | Reducir incobrables | Credex",
+      desc: "Evalúe clientes en segundos, reduzca riesgo financiero y automatice decisiones crediticias con Credex."
+    },
+    "/scoring-crediticio": {
+      title: "Scoring crediticio para empresas | Evaluación automatizada | Credex",
+      desc: "Sistema de scoring crediticio en tiempo real para empresas. Mejore decisiones y reduzca riesgo."
+    },
+    "/analisis-riesgo": {
+      title: "Análisis de riesgo crediticio empresas | Machine Learning | Credex",
+      desc: "Herramienta avanzada de análisis de riesgo financiero con modelos predictivos para empresas en Chile."
+    }
+  };
+
+  const current = seo[location.pathname] || seo["/"];
+
+  return (
+    <>
+      {/* SEO */}
+      <Helmet>
+        <title>{current.title}</title>
+        <meta name="description" content={current.desc} />
+
+        <meta name="keywords" content="
+          evaluación crediticia empresas,
+          scoring crediticio Chile,
+          análisis de riesgo financiero,
+          software evaluación crediticia,
+          machine learning crédito,
+          reducir incobrables,
+          evaluación clientes empresas
+        " />
+
+        <meta property="og:title" content={current.title} />
+        <meta property="og:description" content={current.desc} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`https://credex.cl${location.pathname}`} />
+        <meta property="og:image" content="https://credex.cl/og-image.jpg" />
+
+        <link rel="canonical" href={`https://credex.cl${location.pathname}`} />
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            name: "Credex",
+            applicationCategory: "FinanceApplication",
+            operatingSystem: "Web",
+            description: "Plataforma de evaluación crediticia para empresas en Chile con scoring y machine learning",
+            featureList: [
+              "Evaluación crediticia en tiempo real",
+              "Scoring crediticio automatizado",
+              "Análisis de riesgo financiero",
+              "Machine Learning aplicado a crédito"
+            ],
+            offers: {
+              "@type": "Offer",
+              price: "0",
+              priceCurrency: "CLP"
+            }
+          })}
+        </script>
+      </Helmet>
+
+      {/* APP */}
+      <Chatbot />
+      <Header />
+
+      <Hero />
+      <SegmentSwitcher />
+     {/*  <TestimonialTop /> */}
+      <Problem />
+      <Impact />
+
+      <Suspense fallback={<div className="py-20" />}>
+        <ProductPreview />
+        <Flow />
+        <BeforeAfter />
+        <Services />
+        <Security />
+       {/* <Integrations /> */}
+      </Suspense>
+
+      <MachineLearning />
+
+     {/* <TestimonialBottom /> */}
+     {/* <Clients /> */}
+      <Contact />
+
+      {/* SEO CONTENT */}
+      <section className="py-24 bg-white">
+        <div className="max-w-4xl mx-auto px-6">
+
+          <h2 className="text-3xl md:text-4xl font-semibold mb-6 text-gray-900">
+            Evaluación crediticia para empresas en Chile
+          </h2>
+
+          <p className="text-gray-600 mb-4">
+            Credex es una plataforma de evaluación crediticia diseñada para empresas en Chile que necesitan analizar riesgo financiero, reducir incobrables y tomar decisiones rápidas basadas en datos.
+          </p>
+
+          <p className="text-gray-600 mb-4">
+            A través de un sistema de scoring crediticio automatizado, permite evaluar clientes en segundos utilizando información de burós, datos financieros y modelos avanzados de análisis de riesgo.
+          </p>
+
+          <p className="text-gray-600 mb-4">
+            La incorporación de Machine Learning permite identificar patrones de comportamiento de pago, aumentando la aprobación automática sin comprometer el control de riesgo.
+          </p>
+
+          <p className="text-gray-600 mb-4">
+            Empresas fintech, automotrices y B2B utilizan Credex para optimizar sus procesos de evaluación crediticia, mejorar la eficiencia operativa y escalar su negocio.
+          </p>
+
+          <p className="text-gray-600">
+            Más información sobre{" "}
+            <a href="/evaluacion-crediticia" className="text-orange-500">evaluación crediticia</a>,{" "}
+            <a href="/scoring-crediticio" className="text-orange-500">scoring crediticio</a> y{" "}
+            <a href="/analisis-riesgo" className="text-orange-500">análisis de riesgo</a>, junto con modelos de machine learning aplicados a crédito.
+          </p>
+
+        </div>
+      </section>
+
+      <Footer />
+    </>
+  );
+}
