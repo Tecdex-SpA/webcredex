@@ -8,19 +8,19 @@ export default function Footer() {
           <img
             src="/logo-credex-footer.png"
             alt="Credex"
-            className="h-14 object-contain"
+            className="h-20 object-contain"
           />
 
           <img
             src="/iso9001.png"
             alt="ISO 9001"
-            className="h-11 object-contain opacity-90"
+            className="h-15 object-contain opacity-90"
           />
 
           <img
             src="/corfo.png"
             alt="CORFO"
-            className="h-11 object-contain opacity-90"
+            className="h-15 object-contain opacity-90"
           />
         </div>
 
