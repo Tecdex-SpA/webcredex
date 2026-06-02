@@ -6,7 +6,7 @@ export default function Footer() {
         {/* LOGOS */}
         <div className="flex items-center justify-center md:justify-start gap-6 md:border-r md:border-white/15 md:pr-10">
           <img
-            src="/logo-credex-footer.png"
+            src="/logo-credex-white.png"
             alt="Credex"
             className="h-20 object-contain"
           />
