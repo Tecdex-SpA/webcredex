@@ -14,13 +14,13 @@ export default function Footer() {
           <img
             src="/iso9001.png"
             alt="ISO 9001"
-            className="h-14 object-contain opacity-90"
+            className="h-18 object-contain opacity-90"
           />
 
           <img
             src="/corfo.png"
             alt="CORFO"
-            className="h-14 object-contain opacity-90"
+            className="h-18 object-contain opacity-90"
           />
         </div>
 
