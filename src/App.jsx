@@ -13,6 +13,8 @@ import MachineLearning from "./components/MachineLearning";
 // import Clients from "./components/Clients";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import CorfoSupport from "./components/CorfoSupport";
+
 // import { TestimonialTop, TestimonialBottom } from "./components/Testimonials";
 
 // lazy
@@ -262,7 +264,7 @@ export default function App() {
           </p>
         </div>
       </section>
-
+      <CorfoSupport />
       <Footer />
     </>
   );
