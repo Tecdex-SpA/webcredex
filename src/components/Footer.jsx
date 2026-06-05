@@ -4,24 +4,26 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-[1.7fr_1.2fr_0.8fr] items-center gap-10">
 
         {/* LOGOS */}
-        <div className="flex flex-wrap md:flex-nowrap items-center justify-center md:justify-start gap-4 md:gap-6 md:border-r md:border-white/15 md:pr-12">
-          <img
-            src="/logo-credex-white.png"
-            alt="Credex"
-            className="h-14 sm:h-16 md:h-20 object-contain"
-          />
+        <div className="flex flex-col md:flex-row items-center justify-center md:justify-start gap-4 md:gap-6 md:border-r md:border-white/15 md:pr-12">
+	<img
+  src="/logo-credex-white.png"
+  alt="Credex"
+  className="h-14 sm:h-16 md:h-20 object-contain"
+/>
 
-          <img
-            src="/iso9001.png"
-            alt="ISO 9001"
-            className="h-14 sm:h-16 md:h-20 object-contain"
-          />
+<div className="flex items-center justify-center gap-4 md:gap-6">
+  <img
+    src="/iso9001.png"
+    alt="ISO 9001"
+    className="h-12 sm:h-14 md:h-20 object-contain"
+  />
 
-          <img
-            src="/corfo.png"
-            alt="CORFO"
-            className="h-14 sm:h-16 md:h-20 object-contain"
-          />
+  <img
+    src="/corfo.png"
+    alt="CORFO"
+    className="h-12 sm:h-14 md:h-20 object-contain"
+  />
+</div>
         </div>
 
         {/* CONTACTO */}
