@@ -25,7 +25,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-[#0B1F3A] text-white px-6 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center pt-28 md:pt-32 bg-[#0B1F3A] text-white px-6 overflow-hidden">
       {/* BACKGROUND */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#0B1F3A] via-[#0F2A4D] to-[#0B1F3A]" />
       <div className="absolute w-[900px] h-[900px] bg-orange-500/10 blur-3xl rounded-full top-[-200px] left-1/2 -translate-x-1/2" />

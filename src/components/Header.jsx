@@ -76,17 +76,17 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         isLight
           ? "bg-white/90 backdrop-blur-xl border-b border-gray-200 shadow-sm"
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between h-20 px-6">
+      <div className="max-w-7xl mx-auto flex items-center justify-between h-24 px-6">
         <img
           src={isLight ? "/logo-credex.png" : "/logo-credex-white.png"}
           alt="Credex"
-          className="h-10 object-contain"
+          className="h-14 md:h-16 object-contain"
         />
 
         <nav
