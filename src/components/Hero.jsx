@@ -14,7 +14,7 @@ export default function Hero() {
     const savedCountry = localStorage.getItem("credex_country");
 
     if (host.includes("credexapp.com") || savedCountry === "PE") {
-      return "https://wws.credexapp.com";
+      return "https://ww8.credexapp.com";
     }
 
     return "https://ww8.portalcredex.cl";

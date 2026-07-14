@@ -10,7 +10,7 @@ const COUNTRIES = {
   PE: {
     label: "Perú",
     flag: "🇵🇪",
-    clientUrl: "https://wws.credexapp.com",
+    clientUrl: "https://ww8.credexapp.com",
   },
 };
 
