@@ -69,9 +69,10 @@ export default function App() {
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href={siteUrl} />
         <link rel="alternate" hrefLang="x-default" href="https://www.credexapp.com/" />
-        <link rel="alternate" hrefLang="es-CL" href="https://www.credexapp.com/cl" />
+        <link rel="alternate" hrefLang="es-CL" href="https://www.credex.cl/" />
         <link rel="alternate" hrefLang="es-PE" href="https://www.credexapp.com/pe" />
         <link rel="alternate" hrefLang="es-CO" href="https://www.credexapp.com/co" />
+        <link rel="alternate" hrefLang="es-AR" href="https://www.credexapp.com/ar" />
 
         <meta property="og:site_name" content="Credex" />
         <meta property="og:locale" content={market.locale} />
