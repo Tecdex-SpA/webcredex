@@ -13,6 +13,7 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import CorfoSupport from "./components/CorfoSupport";
 import { getCurrentMarket } from "./config/markets";
+import { getCommercialCopy } from "./config/commercialCopy";
 
 const ProductPreview = React.lazy(() => import("./components/ProductPreview"));
 const Flow = React.lazy(() => import("./components/Flow"));
@@ -23,41 +24,21 @@ const Security = React.lazy(() => import("./components/Security"));
 export default function App() {
   const location = useLocation();
   const market = getCurrentMarket(location.pathname);
+  const copy = getCommercialCopy(market.code);
   const siteUrl = market.siteUrl;
   const ogImage = `${siteUrl.replace(/\/$/, "")}/preview.png`;
 
-  const seo = market.isChile
-    ? {
-        title:
-          "Evaluación crediticia para empresas en Chile | Scoring y Machine Learning | Credex",
-        description:
-          "Plataforma de evaluación crediticia para empresas en Chile. Automatice decisiones, reduzca incobrables y aumente aprobación con scoring y Machine Learning.",
-        schemaDescription:
-          "Plataforma de evaluación crediticia para empresas en Chile con scoring, análisis de riesgo y Machine Learning.",
-        category: "FinanceApplication",
-        features: [
-          "Evaluación crediticia en tiempo real",
-          "Scoring crediticio automatizado",
-          "Análisis de riesgo financiero",
-          "Machine Learning aplicado a crédito",
-          "Automatización de políticas de riesgo",
-        ],
-      }
-    : {
-        title: `Inteligencia artificial, evaluación e integraciones | Credex ${
-          market.code === "GLOBAL" ? "Internacional" : market.label
-        }`,
-        description:
-          "Credex desarrolla soluciones de inteligencia artificial, motores de evaluación configurables e integraciones para empresas.",
-        schemaDescription:
-          "Soluciones empresariales de inteligencia artificial, motores de evaluación e integraciones tecnológicas.",
-        category: "BusinessApplication",
-        features: [
-          "Desarrollo de inteligencia artificial",
-          "Motor de evaluación configurable",
-          "Integraciones mediante API",
-        ],
-      };
+  const seo = {
+    title: copy.seo.title,
+    description: copy.seo.description,
+    schemaDescription: market.isChile
+      ? "Plataforma de evaluación crediticia para empresas en Chile con scoring, análisis de riesgo y Machine Learning."
+      : "Soluciones empresariales de inteligencia artificial, motores de evaluación e integraciones tecnológicas.",
+    category: market.isChile ? "FinanceApplication" : "BusinessApplication",
+    features: market.isChile
+      ? ["Evaluación crediticia en tiempo real", "Scoring crediticio automatizado", "Análisis de riesgo financiero", "Machine Learning aplicado a crédito", "Automatización de políticas de riesgo"]
+      : ["Desarrollo de inteligencia artificial", "Motor de evaluación configurable", "Integraciones mediante API"],
+  };
 
   return (
     <>
@@ -97,11 +78,7 @@ export default function App() {
             operatingSystem: "Web",
             description: seo.schemaDescription,
             featureList: seo.features,
-            provider: {
-              "@type": "Organization",
-              name: "Credex",
-              url: siteUrl,
-            },
+            provider: { "@type": "Organization", name: "Credex", url: siteUrl },
             areaServed: market.areaServed,
           })}
         </script>
@@ -132,23 +109,14 @@ export default function App() {
       </Suspense>
 
       <MachineLearning />
-      <div id="contacto">
-        <Contact />
-      </div>
+      <Contact />
       {market.isChile && <CorfoSupport />}
 
       {!market.isChile && (
         <section className="py-24 bg-white">
           <div className="max-w-4xl mx-auto px-6 text-center">
-            <h2 className="text-3xl md:text-4xl font-semibold mb-6 text-gray-900">
-              Soluciones adaptadas a cada mercado
-            </h2>
-            <p className="text-gray-600 text-lg">
-              Credex ofrece internacionalmente desarrollo de inteligencia artificial,
-              motores de evaluación configurables e integraciones tecnológicas. La
-              disponibilidad y alcance de cada implementación se define según las
-              necesidades operativas de cada organización.
-            </p>
+            <h2 className="text-3xl md:text-4xl font-semibold mb-6 text-gray-900">{copy.closing.title}</h2>
+            <p className="text-gray-600 text-lg">{copy.closing.description}</p>
           </div>
         </section>
       )}
