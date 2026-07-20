@@ -44,8 +44,7 @@ export default function Header() {
     const isGlobalDomain = isCredexGlobalHostname(hostname);
     if (!isChileDomain && !isGlobalDomain) return;
 
-    // En credexapp.com, una ruta de mercado explícita siempre tiene prioridad.
-    // La detección por IP se usa únicamente en la entrada a la raíz global.
+    // Una ruta de mercado explícita siempre tiene prioridad sobre la IP.
     if (isGlobalDomain && location.pathname !== "/") {
       localStorage.setItem("credex_country", market.code);
       localStorage.setItem("credex_market_manual", market.code);
@@ -116,15 +115,8 @@ export default function Header() {
     localStorage.setItem("credex_market_manual", selectedMarket.code);
     localStorage.setItem("credex_market_source", "manual");
 
-    const destination = getMarketDestination(selectedMarket);
-    const targetHost = new URL(destination).hostname;
-    if (targetHost !== window.location.hostname) {
-      window.location.assign(destination);
-      return;
-    }
-
-    navigate(selectedMarket.path);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    // Recarga completa para reconstruir textos, SEO y formulario Clientify.
+    window.location.assign(getMarketDestination(selectedMarket));
   };
 
   return (
