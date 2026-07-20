@@ -39,6 +39,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route path="/cl" element={<App />} />
           <Route path="/pe" element={<App />} />
           <Route path="/co" element={<App />} />
+          <Route path="/ar" element={<App />} />
 
           <Route path="/evaluacion-crediticia" element={<EvaluacionCrediticia />} />
           <Route path="/scoring-crediticio" element={<ScoringCrediticio />} />
