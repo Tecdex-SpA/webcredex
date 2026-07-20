@@ -58,13 +58,7 @@ export const MARKETS = {
 
 export const ENABLED_MARKETS = ["GLOBAL", "CL", "PE", "CO", "AR"];
 
-export function getMarketFromLocation(pathname = "/", hostname = "") {
-  const host = hostname.toLowerCase();
-
-  if (host === "www.credex.cl" || host === "ww2.credex.cl" || host === "credex.cl") {
-    return MARKETS.CL;
-  }
-
+function getMarketFromPath(pathname = "/") {
   const firstSegment = pathname.split("/").filter(Boolean)[0]?.toLowerCase();
 
   if (firstSegment === "cl") return MARKETS.CL;
@@ -72,10 +66,43 @@ export function getMarketFromLocation(pathname = "/", hostname = "") {
   if (firstSegment === "co") return MARKETS.CO;
   if (firstSegment === "ar") return MARKETS.AR;
 
+  return null;
+}
+
+function isChileHostname(hostname = "") {
+  const host = hostname.toLowerCase();
+  return host === "www.credex.cl" || host === "ww2.credex.cl" || host === "credex.cl";
+}
+
+export function getMarketFromLocation(pathname = "/", hostname = "", search = "") {
+  if (isChileHostname(hostname)) return MARKETS.CL;
+
+  const requestedCode = new URLSearchParams(search).get("market")?.toUpperCase();
+  if (requestedCode && MARKETS[requestedCode] && requestedCode !== "CL") {
+    return MARKETS[requestedCode];
+  }
+
+  const pathMarket = getMarketFromPath(pathname);
+  if (pathMarket) return pathMarket;
+
   return MARKETS.GLOBAL;
 }
 
 export function getCurrentMarket(pathname = "/") {
   if (typeof window === "undefined") return getMarketFromLocation(pathname);
-  return getMarketFromLocation(pathname, window.location.hostname);
+
+  const explicitMarket = getMarketFromLocation(
+    pathname,
+    window.location.hostname,
+    window.location.search,
+  );
+
+  if (explicitMarket.code !== "GLOBAL" || pathname !== "/") return explicitMarket;
+
+  const savedCode = localStorage.getItem("credex_market_manual");
+  if (savedCode && MARKETS[savedCode] && savedCode !== "CL") {
+    return MARKETS[savedCode];
+  }
+
+  return explicitMarket;
 }
