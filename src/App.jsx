@@ -2,7 +2,6 @@ import React, { Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
 
-// normales
 import Chatbot from "./components/Chatbot";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
@@ -10,163 +9,80 @@ import SegmentSwitcher from "./components/SegmentSwitcher";
 import Problem from "./components/Problem";
 import Impact from "./components/Impact";
 import MachineLearning from "./components/MachineLearning";
-// import Clients from "./components/Clients";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import CorfoSupport from "./components/CorfoSupport";
+import { getCurrentMarket } from "./config/markets";
 
-// import { TestimonialTop, TestimonialBottom } from "./components/Testimonials";
-
-// lazy
 const ProductPreview = React.lazy(() => import("./components/ProductPreview"));
 const Flow = React.lazy(() => import("./components/Flow"));
 const BeforeAfter = React.lazy(() => import("./components/BeforeAfter"));
 const Services = React.lazy(() => import("./components/Services"));
 const Security = React.lazy(() => import("./components/Security"));
-// const Integrations = React.lazy(() => import("./components/Integrations"));
-
-const DEFAULT_SITE_URL = "https://www.credex.cl";
-
-function getRuntimeCountry() {
-  if (typeof window === "undefined") return "CL";
-
-  const host = window.location.hostname.toLowerCase();
-
-  if (host.includes("credexapp.com")) return "PE";
-  if (
-    host === "www.credex.cl" ||
-    host === "ww2.credex.cl" ||
-    host === "credex.cl"
-  ) {
-    return "CL";
-  }
-
-  const savedCountry = localStorage.getItem("credex_country");
-  if (savedCountry === "PE") return "PE";
-
-  return "CL";
-}
-
-function getRuntimeSiteUrl(country) {
-  if (country === "PE") return "https://www.credexapp.com";
-  return DEFAULT_SITE_URL;
-}
 
 export default function App() {
   const location = useLocation();
+  const market = getCurrentMarket(location.pathname);
+  const siteUrl = market.siteUrl;
+  const ogImage = `${siteUrl.replace(/\/$/, "")}/preview.png`;
 
-  const country = getRuntimeCountry();
-  const isPeru = country === "PE";
-  const siteUrl = getRuntimeSiteUrl(country);
-  const ogImage = `${siteUrl}/preview.png`;
-
-  const seo = {
-    "/": isPeru
-      ? {
-          title:
-            "Evaluación crediticia para empresas | Scoring y Machine Learning | Credex",
-          desc:
-            "Plataforma de evaluación crediticia para empresas. Automatice decisiones, reduzca incobrables y aumente aprobación con scoring y Machine Learning.",
-        }
-      : {
-          title:
-            "Evaluación crediticia para empresas en Chile | Scoring y Machine Learning | Credex",
-          desc:
-            "Plataforma de evaluación crediticia para empresas en Chile. Automatice decisiones, reduzca incobrables y aumente aprobación con scoring y Machine Learning.",
-        },
-    "/evaluacion-crediticia": isPeru
-      ? {
-          title:
-            "Evaluación crediticia para empresas | Reducir incobrables | Credex",
-          desc:
-            "Evalúe clientes en segundos, reduzca riesgo financiero y automatice decisiones crediticias con Credex.",
-        }
-      : {
-          title:
-            "Evaluación crediticia para empresas en Chile | Reducir incobrables | Credex",
-          desc:
-            "Evalúe clientes en segundos, reduzca riesgo financiero y automatice decisiones crediticias con Credex.",
-        },
-    "/scoring-crediticio": isPeru
-      ? {
-          title:
-            "Scoring crediticio para empresas | Evaluación automatizada | Credex",
-          desc:
-            "Sistema de scoring crediticio en tiempo real para empresas. Mejore decisiones, automatice políticas y reduzca riesgo.",
-        }
-      : {
-          title:
-            "Scoring crediticio para empresas en Chile | Evaluación automatizada | Credex",
-          desc:
-            "Sistema de scoring crediticio en tiempo real para empresas en Chile. Mejore decisiones, automatice políticas y reduzca riesgo.",
-        },
-    "/analisis-riesgo": isPeru
-      ? {
-          title:
-            "Análisis de riesgo crediticio para empresas | Machine Learning | Credex",
-          desc:
-            "Herramienta avanzada de análisis de riesgo financiero con modelos predictivos y Machine Learning para empresas.",
-        }
-      : {
-          title:
-            "Análisis de riesgo crediticio para empresas en Chile | Machine Learning | Credex",
-          desc:
-            "Herramienta avanzada de análisis de riesgo financiero con modelos predictivos y Machine Learning para empresas en Chile.",
-        },
-  };
-
-  const current = seo[location.pathname] || seo["/"];
-  const canonicalUrl = `${siteUrl}${location.pathname}`;
-
-  const seoContent = isPeru
+  const seo = market.isChile
     ? {
-        title: "Evaluación crediticia para empresas",
-        intro:
-          "Credex es una plataforma de evaluación crediticia diseñada para empresas que necesitan analizar riesgo financiero, reducir incobrables y tomar decisiones rápidas basadas en datos.",
-        schemaDescription:
-          "Plataforma de evaluación crediticia para empresas con scoring, análisis de riesgo y Machine Learning.",
-        areaServed: "Perú",
-        locale: "es_PE",
-      }
-    : {
-        title: "Evaluación crediticia para empresas en Chile",
-        intro:
-          "Credex es una plataforma de evaluación crediticia diseñada para empresas en Chile que necesitan analizar riesgo financiero, reducir incobrables y tomar decisiones rápidas basadas en datos.",
+        title:
+          "Evaluación crediticia para empresas en Chile | Scoring y Machine Learning | Credex",
+        description:
+          "Plataforma de evaluación crediticia para empresas en Chile. Automatice decisiones, reduzca incobrables y aumente aprobación con scoring y Machine Learning.",
         schemaDescription:
           "Plataforma de evaluación crediticia para empresas en Chile con scoring, análisis de riesgo y Machine Learning.",
-        areaServed: "Chile",
-        locale: "es_CL",
+        category: "FinanceApplication",
+        features: [
+          "Evaluación crediticia en tiempo real",
+          "Scoring crediticio automatizado",
+          "Análisis de riesgo financiero",
+          "Machine Learning aplicado a crédito",
+          "Automatización de políticas de riesgo",
+        ],
+      }
+    : {
+        title: `Inteligencia artificial, evaluación e integraciones | Credex ${
+          market.code === "GLOBAL" ? "Internacional" : market.label
+        }`,
+        description:
+          "Credex desarrolla soluciones de inteligencia artificial, motores de evaluación configurables e integraciones para empresas.",
+        schemaDescription:
+          "Soluciones empresariales de inteligencia artificial, motores de evaluación e integraciones tecnológicas.",
+        category: "BusinessApplication",
+        features: [
+          "Desarrollo de inteligencia artificial",
+          "Motor de evaluación configurable",
+          "Integraciones mediante API",
+        ],
       };
 
   return (
     <>
       <Helmet>
         <html lang="es" />
-
-        <title>{current.title}</title>
-        <meta name="description" content={current.desc} />
-        <meta
-          name="keywords"
-          content="evaluación crediticia empresas, scoring crediticio, análisis de riesgo financiero, software evaluación crediticia, machine learning crédito, reducir incobrables, evaluación clientes empresas"
-        />
+        <title>{seo.title}</title>
+        <meta name="description" content={seo.description} />
         <meta name="author" content="Credex" />
         <meta name="robots" content="index, follow" />
-
-        <link rel="canonical" href={canonicalUrl} />
+        <link rel="canonical" href={siteUrl} />
+        <link rel="alternate" hrefLang="x-default" href="https://www.credexapp.com/" />
+        <link rel="alternate" hrefLang="es-CL" href="https://www.credexapp.com/cl" />
+        <link rel="alternate" hrefLang="es-PE" href="https://www.credexapp.com/pe" />
+        <link rel="alternate" hrefLang="es-CO" href="https://www.credexapp.com/co" />
 
         <meta property="og:site_name" content="Credex" />
-        <meta property="og:locale" content={seoContent.locale} />
-        <meta property="og:title" content={current.title} />
-        <meta property="og:description" content={current.desc} />
+        <meta property="og:locale" content={market.locale} />
+        <meta property="og:title" content={seo.title} />
+        <meta property="og:description" content={seo.description} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:url" content={siteUrl} />
         <meta property="og:image" content={ogImage} />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={current.title} />
-        <meta name="twitter:description" content={current.desc} />
+        <meta name="twitter:title" content={seo.title} />
+        <meta name="twitter:description" content={seo.description} />
         <meta name="twitter:image" content={ogImage} />
 
         <script type="application/ld+json">
@@ -176,96 +92,65 @@ export default function App() {
             name: "Credex",
             url: siteUrl,
             image: ogImage,
-            applicationCategory: "FinanceApplication",
+            applicationCategory: seo.category,
             operatingSystem: "Web",
-            description: seoContent.schemaDescription,
-            featureList: [
-              "Evaluación crediticia en tiempo real",
-              "Scoring crediticio automatizado",
-              "Análisis de riesgo financiero",
-              "Machine Learning aplicado a crédito",
-              "Automatización de políticas de riesgo",
-            ],
+            description: seo.schemaDescription,
+            featureList: seo.features,
             provider: {
               "@type": "Organization",
               name: "Credex",
               url: siteUrl,
             },
-            areaServed: {
-              "@type": "Country",
-              name: seoContent.areaServed,
-            },
+            areaServed: market.areaServed,
           })}
         </script>
       </Helmet>
 
       <Chatbot />
       <Header />
-
       <Hero />
-      <SegmentSwitcher />
 
-      {/* <TestimonialTop /> */}
-
-      <Problem />
-      <Impact />
+      {market.isChile && (
+        <>
+          <SegmentSwitcher />
+          <Problem />
+          <Impact />
+        </>
+      )}
 
       <Suspense fallback={<div className="py-20" />}>
-        <ProductPreview />
-        <Flow />
-        <BeforeAfter />
+        {market.isChile && (
+          <>
+            <ProductPreview />
+            <Flow />
+            <BeforeAfter />
+          </>
+        )}
         <Services />
-        <Security />
-
-        {/* <Integrations /> */}
+        {market.isChile && <Security />}
       </Suspense>
 
       <MachineLearning />
+      <div id="contacto">
+        <Contact />
+      </div>
+      {market.isChile && <CorfoSupport />}
 
-      {/* <TestimonialBottom /> */}
-      {/* <Clients /> */}
-
-      <Contact />
-
-      <CorfoSupport />
-
-      <section className="py-24 bg-white">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-semibold mb-6 text-gray-900">
-            {seoContent.title}
-          </h2>
-
-          <p className="text-gray-600 mb-4">{seoContent.intro}</p>
-
-          <p className="text-gray-600 mb-4">
-            A través de un sistema de scoring crediticio automatizado, permite evaluar clientes en segundos utilizando información de burós, datos financieros y modelos avanzados de análisis de riesgo.
-          </p>
-
-          <p className="text-gray-600 mb-4">
-            La incorporación de Machine Learning permite identificar patrones de comportamiento de pago, aumentando la aprobación automática sin comprometer el control de riesgo.
-          </p>
-
-          <p className="text-gray-600 mb-4">
-            Empresas fintech, automotrices y B2B utilizan Credex para optimizar sus procesos de evaluación crediticia, mejorar la eficiencia operativa y escalar su negocio.
-          </p>
-
-          <p className="text-gray-600">
-            Más información sobre{" "}
-            <a href="/evaluacion-crediticia" className="text-orange-500">
-              evaluación crediticia
-            </a>
-            ,{" "}
-            <a href="/scoring-crediticio" className="text-orange-500">
-              scoring crediticio
-            </a>{" "}
-            y{" "}
-            <a href="/analisis-riesgo" className="text-orange-500">
-              análisis de riesgo
-            </a>
-            , junto con modelos de machine learning aplicados a crédito.
-          </p>
-        </div>
-      </section>
+      {!market.isChile && (
+        <section className="py-24 bg-white">
+          <div className="max-w-4xl mx-auto px-6 text-center">
+            <h2 className="text-3xl md:text-4xl font-semibold mb-6 text-gray-900">
+              Soluciones adaptadas a cada mercado
+            </h2>
+            <p className="text-gray-600 text-lg">
+              Credex ofrece internacionalmente desarrollo de inteligencia artificial,
+              motores de evaluación configurables e integraciones tecnológicas. La
+              disponibilidad y alcance de cada implementación se define según las
+              necesidades operativas de cada organización.
+            </p>
+          </div>
+        </section>
+      )}
 
       <Footer />
     </>
