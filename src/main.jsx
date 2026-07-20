@@ -5,7 +5,7 @@ import "./index.css";
 import { HelmetProvider } from "react-helmet-async";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-// HOME
+// HOME Y MERCADOS
 import App from "./App";
 
 // LANDINGS
@@ -35,8 +35,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
-
           <Route path="/" element={<App />} />
+          <Route path="/cl" element={<App />} />
+          <Route path="/pe" element={<App />} />
+          <Route path="/co" element={<App />} />
 
           <Route path="/evaluacion-crediticia" element={<EvaluacionCrediticia />} />
           <Route path="/scoring-crediticio" element={<ScoringCrediticio />} />
@@ -62,9 +64,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             path="/corfo-consolida-expande-2024"
             element={<CorfoConsolidaExpande2024 />}
           />
-
         </Routes>
       </BrowserRouter>
     </HelmetProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
