@@ -8,14 +8,11 @@ const FORM_IDS = {
   AR: "294645",
 };
 
-function getClientifyFormUrl(marketCode) {
+export function getClientifyFormUrl(marketCode) {
   const normalizedMarket = FORM_IDS[marketCode] ? marketCode : "GLOBAL";
   const formId = FORM_IDS[normalizedMarket];
 
-  // El parámetro previo al hash obliga al navegador a cargar un documento nuevo.
-  // Sin este parámetro, Clientify puede interpretar el cambio solo como navegación
-  // interna por hash y conservar el formulario anterior dentro de la SPA embebida.
-  return `https://apps.clientify.net/forms/simpleembed/?credex_market=${normalizedMarket}&credex_form=${formId}#/forms/embedform/${formId}/${CLIENTIFY_USER_ID}`;
+  return `https://apps.clientify.net/forms/simpleembed/#/forms/embedform/${formId}/${CLIENTIFY_USER_ID}`;
 }
 
 export default function ClientifyForm({
@@ -28,7 +25,7 @@ export default function ClientifyForm({
 
   return (
     <iframe
-      key={formUrl}
+      key={`${normalizedMarket}-${FORM_IDS[normalizedMarket]}`}
       src={formUrl}
       title={title}
       className={className}
