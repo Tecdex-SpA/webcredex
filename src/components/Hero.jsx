@@ -3,35 +3,13 @@ import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import Modal from "./Modal";
 import { getCurrentMarket } from "../config/markets";
+import { getCommercialCopy } from "../config/commercialCopy";
 
 export default function Hero() {
   const [open, setOpen] = useState(false);
   const location = useLocation();
   const market = getCurrentMarket(location.pathname);
-
-  const content = market.isChile
-    ? {
-        eyebrow: "Credex Chile",
-        title: "Evite incobrables y apruebe más clientes",
-        highlight: "con evaluación crediticia en segundos",
-        description:
-          "Plataforma de evaluación crediticia para empresas que permite analizar riesgo financiero, automatizar decisiones y vender con mayor seguridad.",
-        primaryCta: "Evaluar cliente ahora",
-        secondaryCta: "Ver plataforma",
-        microcopy: "Evalúe clientes en segundos y reduzca incobrables.",
-      }
-    : {
-        eyebrow:
-          market.code === "GLOBAL" ? "Credex Internacional" : `Credex ${market.label}`,
-        title: "Tecnología para evaluar, integrar",
-        highlight: "y automatizar decisiones",
-        description:
-          "Desarrollamos soluciones de inteligencia artificial, motores de evaluación configurables e integraciones para empresas que buscan escalar sus procesos con mayor trazabilidad y eficiencia.",
-        primaryCta: "Solicitar una reunión",
-        secondaryCta: "Conocer soluciones",
-        microcopy:
-          "Soluciones tecnológicas adaptadas a la operación y realidad de cada empresa.",
-      };
+  const content = getCommercialCopy(market.code).hero;
 
   const openPlatform = () => {
     window.open(market.clientUrl, "_blank", "noopener,noreferrer");
@@ -47,36 +25,19 @@ export default function Hero() {
       <div className="absolute w-[900px] h-[900px] bg-orange-500/10 blur-3xl rounded-full top-[-200px] left-1/2 -translate-x-1/2" />
 
       <div className="relative max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <p className="text-orange-400 font-semibold tracking-wide uppercase text-sm mb-4">
-            {content.eyebrow}
-          </p>
-
+        <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+          <p className="text-orange-400 font-semibold tracking-wide uppercase text-sm mb-4">{content.eyebrow}</p>
           <h1 className="text-5xl md:text-6xl font-semibold leading-tight mb-6">
             {content.title} <br />
             <span className="text-orange-400">{content.highlight}</span>
           </h1>
-
-          <p className="text-gray-300 text-lg mb-8 max-w-xl">
-            {content.description}
-          </p>
+          <p className="text-gray-300 text-lg mb-8 max-w-xl">{content.description}</p>
 
           <div className="flex flex-wrap gap-4 items-center">
-            <button
-              onClick={() => setOpen(true)}
-              className="bg-orange-500 text-white px-8 py-4 rounded-xl font-semibold hover:bg-orange-600 hover:scale-105 transition shadow-lg"
-            >
+            <button onClick={() => setOpen(true)} className="bg-orange-500 text-white px-8 py-4 rounded-xl font-semibold hover:bg-orange-600 hover:scale-105 transition shadow-lg">
               {content.primaryCta}
             </button>
-
-            <button
-              onClick={market.isChile ? openPlatform : scrollToServices}
-              className="border border-orange-400 text-orange-400 px-8 py-4 rounded-xl hover:bg-orange-500 hover:text-white transition"
-            >
+            <button onClick={market.isChile ? openPlatform : scrollToServices} className="border border-orange-400 text-orange-400 px-8 py-4 rounded-xl hover:bg-orange-500 hover:text-white transition">
               {content.secondaryCta}
             </button>
           </div>
@@ -84,35 +45,17 @@ export default function Hero() {
           <p className="text-sm text-gray-400 mt-4">{content.microcopy}</p>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6 }}
-          className="relative"
-        >
+        <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6 }} className="relative">
           <div className="absolute inset-0 bg-orange-500/10 blur-2xl rounded-3xl" />
           <picture>
             <source srcSet="/dashboard.jpg" type="image/jpg" />
-            <img
-              src="/dashboard.jpg"
-              alt={
-                market.isChile
-                  ? "Plataforma de evaluación crediticia para empresas"
-                  : "Soluciones tecnológicas Credex para empresas"
-              }
-              className="relative rounded-2xl shadow-2xl border border-white/10"
-              loading="eager"
-            />
+            <img src="/dashboard.jpg" alt={market.isChile ? "Plataforma de evaluación crediticia para empresas" : "Soluciones tecnológicas Credex para empresas"} className="relative rounded-2xl shadow-2xl border border-white/10" loading="eager" />
           </picture>
         </motion.div>
       </div>
 
       <Modal isOpen={open} onClose={() => setOpen(false)}>
-        <iframe
-          src="https://apps.clientify.net/forms/simpleembed/#/forms/embedform/279377/107027"
-          title="Formulario de contacto Credex"
-          className="w-full h-full border-0"
-        />
+        <iframe src="https://apps.clientify.net/forms/simpleembed/#/forms/embedform/279377/107027" title={content.primaryCta} className="w-full h-full border-0" />
       </Modal>
     </section>
   );
