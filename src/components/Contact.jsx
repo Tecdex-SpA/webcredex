@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { getCurrentMarket } from "../config/markets";
 import { getCommercialCopy } from "../config/commercialCopy";
-import ClientifyForm from "./ClientifyForm";
+import MarketFormCard from "./MarketFormCard";
 
 export default function Contact() {
   const location = useLocation();
@@ -20,13 +20,12 @@ export default function Contact() {
         <p className="text-sm opacity-70 mt-3">{content.microcopy}</p>
       </div>
 
-      <div className="flex justify-center">
-        <div className="w-full max-w-3xl h-[700px]">
-          <ClientifyForm
-            marketCode={market.code}
-            title={content.title}
-          />
-        </div>
+      <div className="flex justify-center px-4">
+        <MarketFormCard
+          key={`${market.code}-${location.pathname}-${location.search}`}
+          marketCode={market.code}
+          title={content.title}
+        />
       </div>
     </section>
   );
