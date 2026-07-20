@@ -6,6 +6,17 @@ import {
   getCurrentMarket,
 } from "../config/markets";
 
+const IP_MARKET_MAP = {
+  CL: "CL",
+  PE: "PE",
+  CO: "CO",
+};
+
+function isCredexChileHostname(hostname) {
+  const host = hostname.toLowerCase();
+  return host === "www.credex.cl" || host === "ww2.credex.cl" || host === "credex.cl";
+}
+
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
@@ -22,6 +33,47 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (isCredexChileHostname(window.location.hostname)) return;
+    if (location.pathname !== "/") return;
+
+    const manuallySelectedMarket = localStorage.getItem("credex_market_manual");
+    if (manuallySelectedMarket && MARKETS[manuallySelectedMarket]) {
+      const selected = MARKETS[manuallySelectedMarket];
+      if (selected.path !== location.pathname) {
+        navigate(selected.path, { replace: true });
+      }
+      return;
+    }
+
+    const controller = new AbortController();
+
+    fetch("https://ipapi.co/json/", { signal: controller.signal })
+      .then((response) => {
+        if (!response.ok) throw new Error("No fue posible detectar el país");
+        return response.json();
+      })
+      .then((data) => {
+        const detectedCode = IP_MARKET_MAP[data?.country_code] || "GLOBAL";
+        const detectedMarket = MARKETS[detectedCode];
+
+        localStorage.setItem("credex_country", detectedMarket.code);
+        localStorage.setItem("credex_market_source", "ip");
+
+        if (detectedMarket.path !== location.pathname) {
+          navigate(detectedMarket.path, { replace: true });
+        }
+      })
+      .catch((error) => {
+        if (error.name === "AbortError") return;
+        localStorage.setItem("credex_country", "GLOBAL");
+        localStorage.setItem("credex_market_source", "fallback");
+      });
+
+    return () => controller.abort();
+  }, [location.pathname, navigate]);
+
   const isLight = scrolled || !isHome;
 
   const handleMarketChange = (event) => {
@@ -29,6 +81,8 @@ export default function Header() {
     if (!selectedMarket) return;
 
     localStorage.setItem("credex_country", selectedMarket.code);
+    localStorage.setItem("credex_market_manual", selectedMarket.code);
+    localStorage.setItem("credex_market_source", "manual");
     navigate(selectedMarket.path);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
