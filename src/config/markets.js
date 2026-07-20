@@ -43,9 +43,20 @@ export const MARKETS = {
     areaServed: "Colombia",
     isChile: false,
   },
+  AR: {
+    code: "AR",
+    label: "Argentina",
+    flag: "🇦🇷",
+    path: "/ar",
+    siteUrl: "https://www.credexapp.com/ar",
+    clientUrl: "https://ww8.credexapp.com",
+    locale: "es_AR",
+    areaServed: "Argentina",
+    isChile: false,
+  },
 };
 
-export const ENABLED_MARKETS = ["GLOBAL", "CL", "PE", "CO"];
+export const ENABLED_MARKETS = ["GLOBAL", "CL", "PE", "CO", "AR"];
 
 export function getMarketFromLocation(pathname = "/", hostname = "") {
   const host = hostname.toLowerCase();
@@ -59,6 +70,7 @@ export function getMarketFromLocation(pathname = "/", hostname = "") {
   if (firstSegment === "cl") return MARKETS.CL;
   if (firstSegment === "pe") return MARKETS.PE;
   if (firstSegment === "co") return MARKETS.CO;
+  if (firstSegment === "ar") return MARKETS.AR;
 
   return MARKETS.GLOBAL;
 }
