@@ -41,16 +41,20 @@ function getMarketFormSection(marketCode) {
 }
 
 function getIsolatedFormUrl(marketCode, section) {
-  const instance = `${marketCode.toLowerCase()}-${section.formId}`;
+  const documentIdentity = new URLSearchParams({
+    market: marketCode,
+    form: section.formId,
+    source: "credex",
+  });
 
-  return `https://apps.clientify.net/forms/simpleembed/?credex_instance=${instance}#/forms/embedform/${section.formId}/${section.userId}`;
+  return `https://apps.clientify.net/forms/simpleembed/?${documentIdentity.toString()}#/forms/embedform/${section.formId}/${section.userId}`;
 }
 
 export default function MarketFormCard({ marketCode, title }) {
   const normalizedMarket = MARKET_FORM_SECTIONS[marketCode] ? marketCode : "GLOBAL";
   const section = getMarketFormSection(normalizedMarket);
   const formUrl = getIsolatedFormUrl(normalizedMarket, section);
-  const frameKey = `${normalizedMarket}-${section.formId}-${formUrl}`;
+  const frameKey = `clientify-${normalizedMarket}-${section.formId}`;
 
   return (
     <div
@@ -63,7 +67,7 @@ export default function MarketFormCard({ marketCode, title }) {
       <div className="h-[560px] overflow-hidden sm:h-[590px] lg:h-[610px]">
         <iframe
           key={frameKey}
-          name={`credex-clientify-${normalizedMarket.toLowerCase()}-${section.formId}`}
+          name={frameKey}
           src={formUrl}
           title={`${title} - ${section.marketLabel}`}
           className="block w-full border-0 bg-white"
@@ -72,6 +76,7 @@ export default function MarketFormCard({ marketCode, title }) {
             transform: `translateY(-${section.offsetY}px)`,
           }}
           loading="eager"
+          referrerPolicy="strict-origin-when-cross-origin"
         />
       </div>
     </div>
