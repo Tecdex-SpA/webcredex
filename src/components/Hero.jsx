@@ -2,8 +2,11 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import Modal from "./Modal";
+import ClientifyForm from "./ClientifyForm";
 import { getCurrentMarket } from "../config/markets";
 import { getCommercialCopy } from "../config/commercialCopy";
+
+const REGIONAL_FORM_MARKETS = new Set(["PE", "CO", "AR"]);
 
 export default function Hero() {
   const [open, setOpen] = useState(false);
@@ -17,6 +20,19 @@ export default function Hero() {
 
   const scrollToServices = () => {
     document.getElementById("servicios")?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const scrollToContact = () => {
+    document.getElementById("contacto")?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const handlePrimaryCta = () => {
+    if (REGIONAL_FORM_MARKETS.has(market.code)) {
+      scrollToContact();
+      return;
+    }
+
+    setOpen(true);
   };
 
   return (
@@ -34,7 +50,7 @@ export default function Hero() {
           <p className="text-gray-300 text-lg mb-8 max-w-xl">{content.description}</p>
 
           <div className="flex flex-wrap gap-4 items-center">
-            <button onClick={() => setOpen(true)} className="bg-orange-500 text-white px-8 py-4 rounded-xl font-semibold hover:bg-orange-600 hover:scale-105 transition shadow-lg">
+            <button onClick={handlePrimaryCta} className="bg-orange-500 text-white px-8 py-4 rounded-xl font-semibold hover:bg-orange-600 hover:scale-105 transition shadow-lg">
               {content.primaryCta}
             </button>
             <button onClick={market.isChile ? openPlatform : scrollToServices} className="border border-orange-400 text-orange-400 px-8 py-4 rounded-xl hover:bg-orange-500 hover:text-white transition">
@@ -54,9 +70,11 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      <Modal isOpen={open} onClose={() => setOpen(false)}>
-        <iframe src="https://apps.clientify.net/forms/simpleembed/#/forms/embedform/279377/107027" title={content.primaryCta} className="w-full h-full border-0" />
-      </Modal>
+      {!REGIONAL_FORM_MARKETS.has(market.code) && (
+        <Modal isOpen={open} onClose={() => setOpen(false)}>
+          <ClientifyForm marketCode={market.code} title={content.primaryCta} />
+        </Modal>
+      )}
     </section>
   );
 }
