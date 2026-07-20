@@ -17,6 +17,17 @@ function isCredexChileHostname(hostname) {
   return host === "www.credex.cl" || host === "ww2.credex.cl" || host === "credex.cl";
 }
 
+function isCredexGlobalHostname(hostname) {
+  const host = hostname.toLowerCase();
+  return host === "www.credexapp.com" || host === "credexapp.com";
+}
+
+function getMarketDestination(market) {
+  if (market.code === "CL") return "https://www.credex.cl";
+  if (market.code === "GLOBAL") return "https://www.credexapp.com/?market=GLOBAL";
+  return market.siteUrl;
+}
+
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
@@ -35,12 +46,34 @@ export default function Header() {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (isCredexChileHostname(window.location.hostname)) return;
+    if (!isCredexGlobalHostname(window.location.hostname)) return;
     if (location.pathname !== "/") return;
+
+    const searchParams = new URLSearchParams(window.location.search);
+    const requestedMarket = searchParams.get("market");
+
+    if (requestedMarket && MARKETS[requestedMarket]) {
+      localStorage.setItem("credex_country", requestedMarket);
+      localStorage.setItem("credex_market_manual", requestedMarket);
+      localStorage.setItem("credex_market_source", "manual");
+
+      searchParams.delete("market");
+      const cleanUrl = `${window.location.pathname}${
+        searchParams.toString() ? `?${searchParams.toString()}` : ""
+      }${window.location.hash}`;
+      window.history.replaceState({}, "", cleanUrl);
+      return;
+    }
 
     const manuallySelectedMarket = localStorage.getItem("credex_market_manual");
     if (manuallySelectedMarket && MARKETS[manuallySelectedMarket]) {
       const selected = MARKETS[manuallySelectedMarket];
+
+      if (selected.code === "CL") {
+        window.location.replace("https://www.credex.cl");
+        return;
+      }
+
       if (selected.path !== location.pathname) {
         navigate(selected.path, { replace: true });
       }
@@ -60,6 +93,11 @@ export default function Header() {
 
         localStorage.setItem("credex_country", detectedMarket.code);
         localStorage.setItem("credex_market_source", "ip");
+
+        if (detectedMarket.code === "CL") {
+          window.location.replace("https://www.credex.cl");
+          return;
+        }
 
         if (detectedMarket.path !== location.pathname) {
           navigate(detectedMarket.path, { replace: true });
@@ -83,6 +121,16 @@ export default function Header() {
     localStorage.setItem("credex_country", selectedMarket.code);
     localStorage.setItem("credex_market_manual", selectedMarket.code);
     localStorage.setItem("credex_market_source", "manual");
+
+    const destination = getMarketDestination(selectedMarket);
+    const currentHostIsChile = isCredexChileHostname(window.location.hostname);
+    const targetHost = new URL(destination).hostname;
+
+    if (targetHost !== window.location.hostname || currentHostIsChile) {
+      window.location.assign(destination);
+      return;
+    }
+
     navigate(selectedMarket.path);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
