@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { ENABLED_MARKETS, MARKETS, getCurrentMarket } from "../config/markets";
 import { getCommercialCopy } from "../config/commercialCopy";
 
@@ -18,13 +18,13 @@ function isCredexGlobalHostname(hostname) {
 function getMarketDestination(market) {
   if (market.code === "CL") return "https://www.credex.cl";
   if (market.code === "GLOBAL") return "https://www.credexapp.com/?market=GLOBAL";
-  return market.siteUrl;
+
+  return `${market.siteUrl}?market=${market.code}`;
 }
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
-  const navigate = useNavigate();
   const market = getCurrentMarket(location.pathname);
   const navigation = getCommercialCopy(market.code).navigation;
   const isHome = ["/", "/cl", "/pe", "/co", "/ar"].includes(location.pathname);
@@ -44,7 +44,17 @@ export default function Header() {
     const isGlobalDomain = isCredexGlobalHostname(hostname);
     if (!isChileDomain && !isGlobalDomain) return;
 
-    // Una ruta de mercado explícita siempre tiene prioridad sobre la IP.
+    const requestedMarket = new URLSearchParams(window.location.search)
+      .get("market")
+      ?.toUpperCase();
+
+    if (requestedMarket && MARKETS[requestedMarket]) {
+      localStorage.setItem("credex_country", requestedMarket);
+      localStorage.setItem("credex_market_manual", requestedMarket);
+      localStorage.setItem("credex_market_source", "manual");
+      return;
+    }
+
     if (isGlobalDomain && location.pathname !== "/") {
       localStorage.setItem("credex_country", market.code);
       localStorage.setItem("credex_market_manual", market.code);
@@ -52,29 +62,16 @@ export default function Header() {
       return;
     }
 
-    const controller = new AbortController();
-
     if (isGlobalDomain && location.pathname === "/") {
-      const searchParams = new URLSearchParams(window.location.search);
-      const requestedMarket = searchParams.get("market");
-
-      if (requestedMarket && MARKETS[requestedMarket]) {
-        localStorage.setItem("credex_country", requestedMarket);
-        localStorage.setItem("credex_market_manual", requestedMarket);
-        localStorage.setItem("credex_market_source", "manual");
-        searchParams.delete("market");
-        const cleanUrl = `${window.location.pathname}${searchParams.toString() ? `?${searchParams.toString()}` : ""}${window.location.hash}`;
-        window.history.replaceState({}, "", cleanUrl);
-        return;
-      }
-
       const manuallySelectedMarket = localStorage.getItem("credex_market_manual");
       if (manuallySelectedMarket && MARKETS[manuallySelectedMarket] && manuallySelectedMarket !== "CL") {
         const selected = MARKETS[manuallySelectedMarket];
-        if (selected.path !== location.pathname) navigate(selected.path, { replace: true });
+        window.location.replace(getMarketDestination(selected));
         return;
       }
     }
+
+    const controller = new AbortController();
 
     fetch("https://ipapi.co/json/", { signal: controller.signal })
       .then((response) => {
@@ -83,8 +80,11 @@ export default function Header() {
       })
       .then((data) => {
         const countryCode = data?.country_code;
+
         if (isChileDomain) {
-          if (countryCode && countryCode !== "CL") window.location.replace("https://www.credexapp.com");
+          if (countryCode && countryCode !== "CL") {
+            window.location.replace("https://www.credexapp.com/?market=GLOBAL");
+          }
           return;
         }
 
@@ -92,7 +92,10 @@ export default function Header() {
         const detectedMarket = MARKETS[detectedCode];
         localStorage.setItem("credex_country", detectedMarket.code);
         localStorage.setItem("credex_market_source", "ip");
-        if (detectedMarket.path !== location.pathname) navigate(detectedMarket.path, { replace: true });
+
+        if (detectedMarket.code !== "GLOBAL") {
+          window.location.replace(getMarketDestination(detectedMarket));
+        }
       })
       .catch((error) => {
         if (error.name === "AbortError") return;
@@ -103,7 +106,7 @@ export default function Header() {
       });
 
     return () => controller.abort();
-  }, [location.pathname, market.code, navigate]);
+  }, [location.pathname, location.search, market.code]);
 
   const isLight = scrolled || !isHome;
 
@@ -114,21 +117,19 @@ export default function Header() {
     localStorage.setItem("credex_country", selectedMarket.code);
     localStorage.setItem("credex_market_manual", selectedMarket.code);
     localStorage.setItem("credex_market_source", "manual");
-
-    // Recarga completa para reconstruir textos, SEO y formulario Clientify.
     window.location.assign(getMarketDestination(selectedMarket));
   };
 
   return (
     <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isLight ? "bg-white/90 backdrop-blur-xl border-b border-gray-200 shadow-sm" : "bg-transparent"}`}>
       <div className="max-w-7xl mx-auto flex items-center justify-between h-24 px-6">
-        <a href={market.path} aria-label="Ir al inicio de Credex">
+        <a href={getMarketDestination(market)} aria-label="Ir al inicio de Credex">
           <img src={isLight ? "/logo-credex.png" : "/logo-credex-white.png"} alt="Credex" className="h-14 md:h-16 object-contain" />
         </a>
 
         <nav className={`hidden md:flex items-center gap-8 text-sm font-medium transition ${isLight ? "text-gray-700" : "text-white"}`}>
-          <a href={`${market.path}#servicios`} className="hover:opacity-70">{navigation.solutions}</a>
-          <a href={`${market.path}#contacto`} className="hover:opacity-70">{navigation.contact}</a>
+          <a href={`${getMarketDestination(market)}#servicios`} className="hover:opacity-70">{navigation.solutions}</a>
+          <a href={`${getMarketDestination(market)}#contacto`} className="hover:opacity-70">{navigation.contact}</a>
         </nav>
 
         <div className="flex items-center gap-3">
