@@ -9,23 +9,27 @@ export default function Contact() {
   const content = getCommercialCopy(market.code).contact;
 
   return (
-    <section id="contacto" className="py-20 bg-dark text-white text-center">
-      <h2 className="text-3xl font-bold mb-6">{content.title}</h2>
-      <p className="opacity-80 mb-8">{content.description}</p>
+    <section id="contacto" className="bg-dark text-white">
+      <div className="mx-auto max-w-5xl px-6 pt-20 text-center">
+        <h2 className="mb-6 text-3xl font-bold">{content.title}</h2>
+        <p className="mb-8 opacity-80">{content.description}</p>
 
-      <div className="text-center mb-10">
-        <button className="bg-orange-500 text-white px-8 py-4 rounded-xl font-semibold hover:scale-105 transition">
-          {content.cta}
-        </button>
-        <p className="text-sm opacity-70 mt-3">{content.microcopy}</p>
+        <div className="mb-10 text-center">
+          <button className="rounded-xl bg-orange-500 px-8 py-4 font-semibold text-white transition hover:scale-105">
+            {content.cta}
+          </button>
+          <p className="mt-3 text-sm opacity-70">{content.microcopy}</p>
+        </div>
       </div>
 
-      <div className="flex justify-center px-4">
-        <MarketFormCard
-          key={`${market.code}-${location.pathname}-${location.search}`}
-          marketCode={market.code}
-          title={content.title}
-        />
+      <div className="w-full overflow-hidden bg-white">
+        <div className="mx-auto w-full max-w-6xl">
+          <MarketFormCard
+            key={`${market.code}-${location.pathname}-${location.search}`}
+            marketCode={market.code}
+            title={content.title}
+          />
+        </div>
       </div>
     </section>
   );
