@@ -1,6 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { getCurrentMarket } from "../config/markets";
 import { getCommercialCopy } from "../config/commercialCopy";
+import ClientifyForm from "./ClientifyForm";
 
 export default function Contact() {
   const location = useLocation();
@@ -20,11 +21,10 @@ export default function Contact() {
       </div>
 
       <div className="flex justify-center">
-        <div className="w-full max-w-3xl h-[600px]">
-          <iframe
-            src="https://apps.clientify.net/forms/simpleembed/#/forms/embedform/279377/107027"
+        <div className="w-full max-w-3xl h-[700px]">
+          <ClientifyForm
+            marketCode={market.code}
             title={content.title}
-            className="w-full h-full border-0"
           />
         </div>
       </div>
