@@ -34,8 +34,50 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Credex | Evaluación crediticia en segundos" />
     <meta name="twitter:description" content="Evalúe personas y empresas con información financiera en segundos. Automatice decisiones de crédito con Credex." />
-    <meta name="twitter:image" content="https://www.credex.cl//preview.png" />
+    <meta name="twitter:image" content="https://www.credex.cl/preview.png" />
 
+    <style id="credex-geo-gate-style">
+      html[data-credex-geo-pending="true"] body {
+        visibility: hidden;
+      }
+    </style>
+
+    <script>
+      (() => {
+        const host = window.location.hostname.toLowerCase();
+        const isChileSite =
+          host === "credex.cl" ||
+          host === "www.credex.cl" ||
+          host === "ww2.credex.cl";
+
+        if (!isChileSite) return;
+
+        document.documentElement.dataset.credexGeoPending = "true";
+
+        const redirectToGlobal = () => {
+          window.location.replace("https://www.credexapp.com/?market=GLOBAL");
+        };
+
+        fetch("/api/geo", {
+          cache: "no-store",
+          credentials: "same-origin",
+          headers: { Accept: "application/json" },
+        })
+          .then((response) => {
+            if (!response.ok) throw new Error("geo_lookup_failed");
+            return response.json();
+          })
+          .then(({ country }) => {
+            if (country !== "CL") {
+              redirectToGlobal();
+              return;
+            }
+
+            delete document.documentElement.dataset.credexGeoPending;
+          })
+          .catch(redirectToGlobal);
+      })();
+    </script>
   </head>
 
   <body>
