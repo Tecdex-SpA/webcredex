@@ -3,18 +3,6 @@ import { useLocation } from "react-router-dom";
 import { ENABLED_MARKETS, MARKETS, getCurrentMarket } from "../config/markets";
 import { getCommercialCopy } from "../config/commercialCopy";
 
-const INTERNATIONAL_IP_MARKET_MAP = { PE: "PE", CO: "CO", AR: "AR" };
-
-function isCredexChileHostname(hostname) {
-  const host = hostname.toLowerCase();
-  return host === "www.credex.cl" || host === "ww2.credex.cl" || host === "credex.cl";
-}
-
-function isCredexGlobalHostname(hostname) {
-  const host = hostname.toLowerCase();
-  return host === "www.credexapp.com" || host === "credexapp.com";
-}
-
 function getMarketDestination(market) {
   if (market.code === "CL") return "https://www.credex.cl";
   if (market.code === "GLOBAL") return "https://www.credexapp.com/?market=GLOBAL";
@@ -39,11 +27,6 @@ export default function Header() {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    const hostname = window.location.hostname;
-    const isChileDomain = isCredexChileHostname(hostname);
-    const isGlobalDomain = isCredexGlobalHostname(hostname);
-    if (!isChileDomain && !isGlobalDomain) return;
-
     const requestedMarket = new URLSearchParams(window.location.search)
       .get("market")
       ?.toUpperCase();
@@ -55,57 +38,10 @@ export default function Header() {
       return;
     }
 
-    if (isGlobalDomain && location.pathname !== "/") {
+    if (["PE", "CO", "AR"].includes(market.code)) {
       localStorage.setItem("credex_country", market.code);
-      localStorage.setItem("credex_market_manual", market.code);
-      localStorage.setItem("credex_market_source", "route");
-      return;
+      localStorage.setItem("credex_market_source", "geo");
     }
-
-    if (isGlobalDomain && location.pathname === "/") {
-      const manuallySelectedMarket = localStorage.getItem("credex_market_manual");
-      if (manuallySelectedMarket && MARKETS[manuallySelectedMarket] && manuallySelectedMarket !== "CL") {
-        const selected = MARKETS[manuallySelectedMarket];
-        window.location.replace(getMarketDestination(selected));
-        return;
-      }
-    }
-
-    const controller = new AbortController();
-
-    fetch("https://ipapi.co/json/", { signal: controller.signal })
-      .then((response) => {
-        if (!response.ok) throw new Error("No fue posible detectar el país");
-        return response.json();
-      })
-      .then((data) => {
-        const countryCode = data?.country_code;
-
-        if (isChileDomain) {
-          if (countryCode && countryCode !== "CL") {
-            window.location.replace("https://www.credexapp.com/?market=GLOBAL");
-          }
-          return;
-        }
-
-        const detectedCode = INTERNATIONAL_IP_MARKET_MAP[countryCode] || "GLOBAL";
-        const detectedMarket = MARKETS[detectedCode];
-        localStorage.setItem("credex_country", detectedMarket.code);
-        localStorage.setItem("credex_market_source", "ip");
-
-        if (detectedMarket.code !== "GLOBAL") {
-          window.location.replace(getMarketDestination(detectedMarket));
-        }
-      })
-      .catch((error) => {
-        if (error.name === "AbortError") return;
-        if (isGlobalDomain) {
-          localStorage.setItem("credex_country", "GLOBAL");
-          localStorage.setItem("credex_market_source", "fallback");
-        }
-      });
-
-    return () => controller.abort();
   }, [location.pathname, location.search, market.code]);
 
   const isLight = scrolled || !isHome;
