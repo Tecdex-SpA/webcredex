@@ -21,39 +21,6 @@
       ],
       "destination": "https://www.credexapp.com/:path*",
       "permanent": true
-    },
-
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.credex.cl"
-        },
-        {
-          "type": "header",
-          "key": "x-vercel-ip-country",
-          "value": "(?!CL).*"
-        }
-      ],
-      "destination": "https://www.credexapp.com/:path*",
-      "permanent": false
-    },
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "ww2.credex.cl"
-        },
-        {
-          "type": "header",
-          "key": "x-vercel-ip-country",
-          "value": "(?!CL).*"
-        }
-      ],
-      "destination": "https://www.credexapp.com/:path*",
-      "permanent": false
     }
   ],
   "rewrites": [
