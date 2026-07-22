@@ -45,18 +45,59 @@
     <script>
       (() => {
         const host = window.location.hostname.toLowerCase();
+        const pathname = window.location.pathname;
+        const params = new URLSearchParams(window.location.search);
+        const requestedMarket = params.get("market")?.toUpperCase();
+        const validMarkets = new Set(["GLOBAL", "PE", "CO", "AR"]);
         const isChileSite =
           host === "credex.cl" ||
           host === "www.credex.cl" ||
           host === "ww2.credex.cl";
+        const isGlobalSite =
+          host === "credexapp.com" || host === "www.credexapp.com";
 
-        if (!isChileSite) return;
+        if (!isChileSite && !isGlobalSite) return;
+
+        const destinationByCountry = {
+          CL: "https://www.credex.cl/",
+          PE: "https://www.credexapp.com/pe?market=PE",
+          CO: "https://www.credexapp.com/co?market=CO",
+          AR: "https://www.credexapp.com/ar?market=AR",
+        };
+
+        const redirectForCountry = (country) => {
+          const destination =
+            destinationByCountry[country] ||
+            "https://www.credexapp.com/?market=GLOBAL";
+          window.location.replace(destination);
+        };
+
+        if (isGlobalSite) {
+          const hasExplicitRoute = ["/pe", "/co", "/ar"].includes(pathname);
+          const savedMarket = localStorage.getItem("credex_market_manual");
+
+          if (hasExplicitRoute || (requestedMarket && validMarkets.has(requestedMarket))) {
+            return;
+          }
+
+          if (savedMarket && validMarkets.has(savedMarket)) {
+            const destination = {
+              GLOBAL: "https://www.credexapp.com/?market=GLOBAL",
+              PE: "https://www.credexapp.com/pe?market=PE",
+              CO: "https://www.credexapp.com/co?market=CO",
+              AR: "https://www.credexapp.com/ar?market=AR",
+            }[savedMarket];
+
+            if (destination && window.location.href !== destination) {
+              window.location.replace(destination);
+            }
+            return;
+          }
+
+          if (pathname !== "/") return;
+        }
 
         document.documentElement.dataset.credexGeoPending = "true";
-
-        const redirectToGlobal = () => {
-          window.location.replace("https://www.credexapp.com/?market=GLOBAL");
-        };
 
         fetch("/api/geo", {
           cache: "no-store",
@@ -68,14 +109,23 @@
             return response.json();
           })
           .then(({ country }) => {
-            if (country !== "CL") {
-              redirectToGlobal();
+            const normalizedCountry = String(country || "").toUpperCase();
+
+            if (isChileSite && normalizedCountry === "CL") {
+              delete document.documentElement.dataset.credexGeoPending;
+              return;
+            }
+
+            redirectForCountry(normalizedCountry);
+          })
+          .catch(() => {
+            if (isChileSite) {
+              redirectForCountry("GLOBAL");
               return;
             }
 
             delete document.documentElement.dataset.credexGeoPending;
-          })
-          .catch(redirectToGlobal);
+          });
       })();
     </script>
   </head>
