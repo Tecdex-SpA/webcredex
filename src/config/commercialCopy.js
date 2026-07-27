@@ -48,9 +48,10 @@ const GLOBAL_COPY = {
       "El alcance se establece considerando el proceso, las fuentes disponibles, la calidad de los datos y los resultados esperados.",
   },
   seo: {
-    title: "Modelamiento, motores de evaluación e integraciones | Credex",
+    title: "Motores de evaluación, scoring e integraciones | Credex",
     description:
-      "Credex desarrolla soluciones de modelamiento, evaluación e integración para procesos financieros, crediticios y de riesgo.",
+      "Soluciones de modelamiento, scoring, motores de evaluación e integraciones para automatizar decisiones financieras, crediticias y de riesgo.",
+    serviceType: "Modelamiento, scoring, motores de evaluación e integraciones financieras",
   },
 };
 
@@ -105,9 +106,10 @@ export const COMMERCIAL_COPY = {
       scopeNote: null,
     },
     seo: {
-      title: "Evaluación y decisión crediticia para empresas en Chile | Credex",
+      title: "Software de evaluación crediticia y riesgo en Chile | Credex",
       description:
-        "Credex integra información, motores de decisión y analítica para automatizar evaluaciones y gestionar riesgo crediticio.",
+        "Evalúe clientes, automatice decisiones y gestione riesgo crediticio con motores configurables, información financiera, analítica y trazabilidad.",
+      serviceType: "Software de evaluación y decisión crediticia para empresas",
     },
   },
   PE: {
@@ -127,8 +129,10 @@ export const COMMERCIAL_COPY = {
       title: "Solicita una reunión",
     },
     seo: {
-      ...GLOBAL_COPY.seo,
-      title: "Modelamiento, evaluación e integraciones en Perú | Credex",
+      title: "Motores de evaluación y scoring en Perú | Credex",
+      description:
+        "Modelamiento, scoring, motores de evaluación e integraciones para automatizar procesos financieros, crediticios y de riesgo en Perú.",
+      serviceType: "Modelamiento, scoring y motores de evaluación financiera en Perú",
     },
   },
   CO: {
@@ -149,8 +153,10 @@ export const COMMERCIAL_COPY = {
       cta: "Solicitar contacto",
     },
     seo: {
-      ...GLOBAL_COPY.seo,
-      title: "Modelamiento, evaluación e integraciones en Colombia | Credex",
+      title: "Motores de evaluación y scoring en Colombia | Credex",
+      description:
+        "Modelamiento, scoring, motores de evaluación e integraciones para automatizar decisiones financieras, crediticias y de riesgo en Colombia.",
+      serviceType: "Modelamiento, scoring y motores de evaluación financiera en Colombia",
     },
   },
   AR: {
@@ -191,8 +197,10 @@ export const COMMERCIAL_COPY = {
       title: "Soluciones definidas según cada operación",
     },
     seo: {
-      ...GLOBAL_COPY.seo,
-      title: "Modelamiento, evaluación e integraciones en Argentina | Credex",
+      title: "Motores de evaluación y scoring en Argentina | Credex",
+      description:
+        "Modelamiento, scoring, motores de evaluación e integraciones para automatizar procesos financieros, crediticios y de riesgo en Argentina.",
+      serviceType: "Modelamiento, scoring y motores de evaluación financiera en Argentina",
     },
   },
 };
