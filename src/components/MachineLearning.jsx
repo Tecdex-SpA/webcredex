@@ -4,68 +4,68 @@ import { getCurrentMarket } from "../config/markets";
 
 const INTERNATIONAL_CONTENT = {
   GLOBAL: {
-    title: "Inteligencia artificial aplicada a procesos empresariales",
-    intro: "Diseñamos soluciones de IA para automatizar tareas, analizar información y fortalecer decisiones operativas y comerciales.",
+    title: "De reglas a modelos predictivos",
+    intro: "Evolucionamos procesos financieros y crediticios desde el modelamiento inicial hasta analítica avanzada y machine learning.",
     paragraphs: [
-      "Credex desarrolla soluciones de inteligencia artificial adaptadas a los procesos, criterios y objetivos de cada organización.",
-      "La tecnología puede apoyar clasificación, extracción y estructuración de información, recomendaciones y analítica predictiva.",
-      "Cada implementación se diseña con trazabilidad, control operacional e integración con los sistemas existentes de la empresa."
+      "El punto de partida es entender el proceso, las variables disponibles, las políticas vigentes y los resultados que se necesitan mejorar.",
+      "Luego estructuramos reglas, motores de evaluación e indicadores que permitan automatizar decisiones con trazabilidad.",
+      "Cuando existe información histórica suficiente, es posible incorporar scoring, modelos predictivos y técnicas de machine learning para complementar la evaluación."
     ],
     benefits: [
-      ["Modelos adaptados", "Soluciones configuradas según el proceso y los objetivos del negocio."],
-      ["Automatización", "Reduce tareas manuales y acelera flujos operativos recurrentes."],
-      ["Control y trazabilidad", "Mantiene visibilidad sobre resultados, reglas y decisiones asistidas."],
-      ["Integración empresarial", "Incorpora capacidades de IA dentro de plataformas y procesos existentes."]
+      ["Modelamiento", "Define variables, criterios y resultados esperados antes de automatizar."],
+      ["Motor de evaluación", "Ejecuta reglas y políticas de decisión dentro del flujo operativo."],
+      ["Scoring y analítica", "Mide comportamiento, riesgo y desempeño para calibrar el proceso."],
+      ["Machine learning", "Incorpora modelos predictivos cuando la calidad y volumen de datos lo permiten."]
     ],
-    closing: "Inteligencia aplicada a necesidades operativas concretas."
+    closing: "La tecnología se incorpora por etapas, según la madurez del proceso y la disponibilidad de datos."
   },
   PE: {
-    title: "Inteligencia artificial para optimizar tus procesos",
-    intro: "Implementamos soluciones de IA que ayudan a automatizar tareas, analizar información y agilizar decisiones empresariales.",
+    title: "De reglas a modelos predictivos",
+    intro: "Evolucionamos procesos financieros y crediticios desde el modelamiento hasta analítica avanzada y machine learning.",
     paragraphs: [
-      "Credex adapta cada solución a los procesos, criterios y objetivos de tu organización.",
-      "La tecnología puede apoyar la clasificación, extracción y estructuración de información, además de recomendaciones y analítica predictiva.",
-      "Cada implementación mantiene trazabilidad, control operativo e integración con los sistemas existentes de tu empresa."
+      "Partimos por comprender tu proceso, las variables disponibles, las políticas vigentes y los resultados que necesitas mejorar.",
+      "Después estructuramos reglas, motores de evaluación e indicadores para automatizar decisiones con trazabilidad.",
+      "Cuando existe información histórica suficiente, podemos incorporar scoring, modelos predictivos y machine learning como apoyo a la evaluación."
     ],
     benefits: [
-      ["Modelos adaptados", "Soluciones configuradas según los procesos y objetivos de tu empresa."],
-      ["Automatización", "Reduce tareas manuales y agiliza flujos operativos recurrentes."],
-      ["Control y trazabilidad", "Mantén visibilidad sobre resultados, reglas y decisiones asistidas."],
-      ["Integración empresarial", "Incorpora capacidades de IA en tus plataformas y procesos existentes."]
+      ["Modelamiento", "Define variables, criterios y resultados antes de automatizar."],
+      ["Motor de evaluación", "Ejecuta reglas y políticas dentro del flujo de tu operación."],
+      ["Scoring y analítica", "Mide comportamiento, riesgo y desempeño para calibrar decisiones."],
+      ["Machine learning", "Incorpora modelos predictivos cuando los datos permiten desarrollarlos con confiabilidad."]
     ],
-    closing: "Tecnología aplicada a necesidades operativas concretas."
+    closing: "Cada etapa se define según la madurez del proceso y la disponibilidad de datos."
   },
   CO: {
-    title: "Inteligencia artificial para decisiones más ágiles",
-    intro: "Conecta tus procesos con soluciones de IA orientadas a automatizar tareas, analizar información y fortalecer la toma de decisiones.",
+    title: "De reglas a modelos predictivos",
+    intro: "Evolucionamos procesos financieros y crediticios desde el modelamiento hasta analítica avanzada y machine learning.",
     paragraphs: [
-      "Credex diseña soluciones de inteligencia artificial alineadas con los procesos y objetivos de tu organización.",
-      "La tecnología puede apoyar la clasificación, extracción y estructuración de información, además de recomendaciones y analítica predictiva.",
-      "Cada implementación conserva trazabilidad, control operativo e integración con los sistemas actuales de tu empresa."
+      "Partimos por comprender tu proceso, las variables disponibles, las políticas vigentes y los resultados que necesitas mejorar.",
+      "Después estructuramos reglas, motores de evaluación e indicadores para automatizar decisiones con trazabilidad.",
+      "Cuando existe información histórica suficiente, podemos incorporar scoring, modelos predictivos y machine learning como apoyo a la evaluación."
     ],
     benefits: [
-      ["Modelos adaptados", "Soluciones configuradas según los procesos y objetivos de tu negocio."],
-      ["Automatización", "Reduce tareas manuales y mejora la agilidad de los flujos operativos."],
-      ["Control y trazabilidad", "Conserva visibilidad sobre resultados, reglas y decisiones asistidas."],
-      ["Integración empresarial", "Conecta capacidades de IA con tus plataformas y procesos existentes."]
+      ["Modelamiento", "Define variables, criterios y resultados antes de automatizar."],
+      ["Motor de evaluación", "Ejecuta reglas y políticas dentro del flujo de tu operación."],
+      ["Scoring y analítica", "Mide comportamiento, riesgo y desempeño para calibrar decisiones."],
+      ["Machine learning", "Incorpora modelos predictivos cuando los datos permiten desarrollarlos con confiabilidad."]
     ],
-    closing: "Inteligencia aplicada para operar con mayor confianza."
+    closing: "Cada etapa se define según la madurez del proceso y la disponibilidad de datos."
   },
   AR: {
-    title: "Inteligencia artificial para potenciar tus procesos",
-    intro: "Implementá soluciones de IA para automatizar tareas, analizar información y mejorar decisiones operativas y comerciales.",
+    title: "De reglas a modelos predictivos",
+    intro: "Evolucionamos procesos financieros y crediticios desde el modelamiento hasta analítica avanzada y machine learning.",
     paragraphs: [
-      "Credex desarrolla soluciones de inteligencia artificial adaptadas a los procesos, criterios y objetivos de tu organización.",
-      "La tecnología puede ayudarte a clasificar, extraer y estructurar información, generar recomendaciones y aplicar analítica predictiva.",
-      "Cada implementación mantiene trazabilidad, control operativo e integración con los sistemas existentes de tu empresa."
+      "Partimos por comprender tu proceso, las variables disponibles, las políticas vigentes y los resultados que necesitás mejorar.",
+      "Después estructuramos reglas, motores de evaluación e indicadores para automatizar decisiones con trazabilidad.",
+      "Cuando existe información histórica suficiente, podemos incorporar scoring, modelos predictivos y machine learning como apoyo a la evaluación."
     ],
     benefits: [
-      ["Modelos adaptados", "Configurá soluciones según los procesos y objetivos de tu negocio."],
-      ["Automatización", "Reducí tareas manuales y acelerá flujos operativos recurrentes."],
-      ["Control y trazabilidad", "Mantené visibilidad sobre resultados, reglas y decisiones asistidas."],
-      ["Integración empresarial", "Incorporá capacidades de IA en tus plataformas y procesos existentes."]
+      ["Modelamiento", "Definí variables, criterios y resultados antes de automatizar."],
+      ["Motor de evaluación", "Ejecutá reglas y políticas dentro del flujo de tu operación."],
+      ["Scoring y analítica", "Medí comportamiento, riesgo y desempeño para calibrar decisiones."],
+      ["Machine learning", "Incorporá modelos predictivos cuando los datos permitan desarrollarlos con confiabilidad."]
     ],
-    closing: "Aplicá inteligencia a necesidades operativas concretas."
+    closing: "Cada etapa se define según la madurez del proceso y la disponibilidad de datos."
   }
 };
 
@@ -75,20 +75,20 @@ export default function MachineLearning() {
 
   const content = market.isChile
     ? {
-        title: "Evaluación crediticia con Machine Learning",
-        intro: "Incorpore modelos predictivos que permiten identificar mejores clientes, reducir riesgo y aumentar la aprobación automática.",
+        title: "Evolución de la decisión crediticia",
+        intro: "Credex permite avanzar desde reglas de negocio hacia scoring, analítica y modelos predictivos, sin perder trazabilidad ni control.",
         paragraphs: [
-          "Credex integra modelos de Machine Learning entrenados con datos históricos para predecir el comportamiento de pago de sus clientes.",
-          "Esta tecnología permite analizar miles de variables y detectar patrones que no son visibles en modelos tradicionales ni en evaluaciones manuales.",
-          "El resultado es una evaluación más precisa, rápida y escalable, que mejora la toma de decisiones sin reemplazar su modelo actual."
+          "El proceso comienza con el modelamiento de políticas, variables y criterios de evaluación utilizados por la organización.",
+          "El motor de decisión automatiza esas políticas y genera información para monitorear aprobación, riesgo y comportamiento.",
+          "Cuando existe información histórica suficiente y validada, se pueden incorporar scoring y machine learning para complementar la evaluación y mejorar la calibración."
         ],
         benefits: [
-          ["Modelo predictivo", "Predice el comportamiento de pago utilizando datos históricos reales."],
-          ["Más aprobación automática", "Convierte evaluaciones manuales en decisiones automáticas."],
-          ["Control de riesgo", "Mejora la precisión manteniendo políticas de crédito seguras."],
-          ["Decisiones en tiempo real", "Evalúa clientes en segundos sin intervención manual."]
+          ["Modelamiento", "Estructure políticas, variables y resultados esperados."],
+          ["Motor de decisión", "Automatice reglas y flujos con trazabilidad."],
+          ["Scoring y monitoreo", "Mida desempeño y ajuste criterios con evidencia."],
+          ["Machine learning", "Incorpore modelos predictivos cuando los datos permitan un desarrollo confiable."]
         ],
-        closing: "Potencie su operación con una segunda capa de decisión inteligente."
+        closing: "La evolución tecnológica se define según los datos, la operación y el nivel de madurez de cada cliente."
       }
     : INTERNATIONAL_CONTENT[market.code] || INTERNATIONAL_CONTENT.GLOBAL;
 
@@ -112,7 +112,7 @@ export default function MachineLearning() {
           <div className="relative">
             <div className="absolute inset-0 bg-orange-100/40 blur-2xl rounded-3xl" />
             <div className="relative bg-white border rounded-2xl shadow-lg p-6">
-              <img src="/ml-dashboard.png" alt={market.isChile ? "Machine Learning aplicado a evaluación crediticia" : "Inteligencia artificial aplicada a procesos empresariales"} className="rounded-xl" loading="lazy" />
+              <img src="/ml-dashboard.png" alt="Modelamiento, scoring y machine learning para decisiones financieras y crediticias" className="rounded-xl" loading="lazy" />
             </div>
           </div>
         </div>
