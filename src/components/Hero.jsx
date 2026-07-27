@@ -14,10 +14,6 @@ export default function Hero() {
   const market = getCurrentMarket(location.pathname);
   const content = getCommercialCopy(market.code).hero;
 
-  const openPlatform = () => {
-    window.open(market.clientUrl, "_blank", "noopener,noreferrer");
-  };
-
   const scrollToServices = () => {
     document.getElementById("servicios")?.scrollIntoView({ behavior: "smooth" });
   };
@@ -53,9 +49,11 @@ export default function Hero() {
             <button onClick={handlePrimaryCta} className="bg-orange-500 text-white px-8 py-4 rounded-xl font-semibold hover:bg-orange-600 hover:scale-105 transition shadow-lg">
               {content.primaryCta}
             </button>
-            <button onClick={market.isChile ? openPlatform : scrollToServices} className="border border-orange-400 text-orange-400 px-8 py-4 rounded-xl hover:bg-orange-500 hover:text-white transition">
-              {content.secondaryCta}
-            </button>
+            {content.secondaryCta && (
+              <button onClick={scrollToServices} className="border border-orange-400 text-orange-400 px-8 py-4 rounded-xl hover:bg-orange-500 hover:text-white transition">
+                {content.secondaryCta}
+              </button>
+            )}
           </div>
 
           <p className="text-sm text-gray-400 mt-4">{content.microcopy}</p>
@@ -65,7 +63,7 @@ export default function Hero() {
           <div className="absolute inset-0 bg-orange-500/10 blur-2xl rounded-3xl" />
           <picture>
             <source srcSet="/dashboard.jpg" type="image/jpg" />
-            <img src="/dashboard.jpg" alt={market.isChile ? "Plataforma de evaluación crediticia para empresas" : "Soluciones tecnológicas Credex para empresas"} className="relative rounded-2xl shadow-2xl border border-white/10" loading="eager" />
+            <img src="/dashboard.jpg" alt={market.isChile ? "Soluciones Credex para evaluación y decisión crediticia" : "Soluciones Credex para evaluación y riesgo"} className="relative rounded-2xl shadow-2xl border border-white/10" loading="eager" />
           </picture>
         </motion.div>
       </div>
