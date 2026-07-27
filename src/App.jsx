@@ -32,12 +32,12 @@ export default function App() {
     title: copy.seo.title,
     description: copy.seo.description,
     schemaDescription: market.isChile
-      ? "Plataforma de evaluación crediticia para empresas en Chile con scoring, análisis de riesgo y Machine Learning."
-      : "Soluciones empresariales de inteligencia artificial, motores de evaluación e integraciones tecnológicas.",
+      ? "Solución para evaluación y decisión crediticia con información, reglas, analítica, scoring y modelos predictivos."
+      : "Soluciones de modelamiento, motores de evaluación e integraciones para procesos financieros, crediticios y de riesgo.",
     category: market.isChile ? "FinanceApplication" : "BusinessApplication",
     features: market.isChile
-      ? ["Evaluación crediticia en tiempo real", "Scoring crediticio automatizado", "Análisis de riesgo financiero", "Machine Learning aplicado a crédito", "Automatización de políticas de riesgo"]
-      : ["Desarrollo de inteligencia artificial", "Motor de evaluación configurable", "Integraciones mediante API"],
+      ? ["Evaluación crediticia", "Motor de decisión configurable", "Información e integraciones", "Analítica y monitoreo", "Scoring y modelos predictivos"]
+      : ["Modelamiento y analítica", "Motor de evaluación configurable", "Integraciones de información y sistemas", "Scoring y modelos predictivos sujetos a disponibilidad de datos"],
   };
 
   return (
