@@ -6,51 +6,51 @@ const GLOBAL_COPY = {
   },
   hero: {
     eyebrow: "Credex Internacional",
-    title: "Tecnología para empresas",
-    highlight: "con inteligencia artificial, evaluación e integraciones",
+    title: "Decisiones financieras más precisas",
+    highlight: "con modelamiento, motores e integraciones",
     description:
-      "Desarrollamos soluciones de inteligencia artificial, motores de evaluación e integraciones para organizaciones que necesitan mejorar sus procesos.",
+      "Diseñamos soluciones para estructurar, automatizar y mejorar procesos de evaluación, riesgo y decisión financiera.",
     primaryCta: "Solicita una reunión",
     secondaryCta: "Conoce las soluciones",
-    microcopy: "Cada proyecto se define según las necesidades de la organización.",
+    microcopy: "Cada implementación se define según el proceso, los datos y los objetivos del cliente.",
   },
   services: {
-    title: "Nuestras líneas de servicio",
+    title: "Soluciones para evaluación y riesgo",
     description:
-      "La oferta internacional de Credex se concentra en tres líneas de trabajo.",
+      "Credex combina modelamiento, automatización e integración tecnológica dentro de procesos financieros y crediticios.",
     items: [
       [
-        "Desarrollo de inteligencia artificial",
-        "Desarrollamos soluciones de inteligencia artificial de acuerdo con las necesidades de cada organización.",
+        "Modelamiento y analítica",
+        "Estructuramos criterios, variables e indicadores para evaluar riesgo y respaldar decisiones financieras.",
       ],
       [
-        "Motor de evaluación",
-        "Implementamos motores de evaluación configurados según los requerimientos de cada proyecto.",
+        "Motores de evaluación",
+        "Implementamos reglas, políticas y flujos de decisión configurados para cada operación.",
       ],
       [
         "Integraciones",
-        "Desarrollamos integraciones entre sistemas de acuerdo con el alcance definido para cada implementación.",
+        "Conectamos fuentes de información y sistemas para ejecutar evaluaciones dentro del flujo operativo del cliente.",
       ],
     ],
   },
   contact: {
     title: "Solicita una reunión",
     description:
-      "Cuéntanos qué necesita tu organización y revisaremos si podemos desarrollar una solución adecuada.",
+      "Cuéntanos qué proceso financiero o crediticio necesitas mejorar y evaluaremos el alcance de una solución.",
     cta: "Solicita una reunión",
-    microcopy: "El alcance de cada proyecto se define después de una evaluación técnica y comercial.",
+    microcopy: "La viabilidad de cada proyecto se determina mediante una evaluación técnica y comercial.",
     scopeNote:
-      "Los servicios disponibles fuera de Chile se limitan a desarrollo de inteligencia artificial, motor de evaluación e integraciones.",
+      "Fuera de Chile, Credex ofrece modelamiento y analítica, motores de evaluación e integraciones para procesos financieros y crediticios.",
   },
   closing: {
-    title: "Soluciones sujetas a evaluación",
+    title: "Soluciones definidas según cada operación",
     description:
-      "El alcance, las condiciones y la viabilidad de cada proyecto se determinan mediante una evaluación técnica y comercial previa.",
+      "El alcance se establece considerando el proceso, las fuentes disponibles, la calidad de los datos y los resultados esperados.",
   },
   seo: {
-    title: "Inteligencia artificial, motor de evaluación e integraciones | Credex",
+    title: "Modelamiento, motores de evaluación e integraciones | Credex",
     description:
-      "Credex desarrolla soluciones de inteligencia artificial, motores de evaluación e integraciones para empresas.",
+      "Credex desarrolla soluciones de modelamiento, evaluación e integración para procesos financieros, crediticios y de riesgo.",
   },
 };
 
@@ -59,55 +59,55 @@ export const COMMERCIAL_COPY = {
   CL: {
     ...GLOBAL_COPY,
     navigation: {
-      solutions: "Plataforma",
+      solutions: "Soluciones",
       contact: "Contacto",
       clientAccess: "Acceso clientes",
     },
     hero: {
       eyebrow: "Credex Chile",
-      title: "Evite incobrables y apruebe más clientes",
-      highlight: "con evaluación crediticia en segundos",
+      title: "Evalúe mejor y reduzca el riesgo",
+      highlight: "con decisiones crediticias automatizadas",
       description:
-        "Plataforma de evaluación crediticia para empresas que permite analizar riesgo financiero, automatizar decisiones y vender con mayor seguridad.",
-      primaryCta: "Evaluar cliente ahora",
-      secondaryCta: "Ver plataforma",
-      microcopy: "Evalúe clientes en segundos y reduzca incobrables.",
+        "Credex integra información, reglas y analítica para evaluar clientes, automatizar decisiones y operar con mayor seguridad.",
+      primaryCta: "Solicitar demostración",
+      secondaryCta: null,
+      microcopy: "Conozca cómo Credex se adapta a sus políticas y procesos de evaluación.",
     },
     services: {
-      title: "Todo lo que necesita para evaluar crédito",
+      title: "Soluciones para gestionar el crédito",
       description:
-        "Una plataforma diseñada para automatizar decisiones, reducir riesgo y escalar su operación.",
+        "Capacidades complementarias para evaluar, decidir y monitorear sin repetir tareas ni fragmentar la operación.",
       items: [
         [
           "Motor de decisión",
-          "Configure reglas, políticas y automatice decisiones crediticias en tiempo real.",
+          "Configure reglas, políticas y criterios para automatizar decisiones crediticias con trazabilidad.",
         ],
         [
-          "Servicios de información",
-          "Integre información financiera y regulatoria para fortalecer sus procesos de evaluación.",
+          "Información e integraciones",
+          "Incorpore antecedentes financieros, regulatorios y operativos dentro del flujo de evaluación.",
         ],
         [
           "Gestión de solicitudes",
-          "Administre el flujo completo de evaluación, aprobación y seguimiento.",
+          "Administre la evaluación, aprobación, derivación y seguimiento desde un proceso centralizado.",
         ],
         [
-          "Analytics y monitoreo",
-          "Controle desempeño, riesgo y KPI para optimizar su operación.",
+          "Analítica y monitoreo",
+          "Mida aprobación, riesgo y desempeño para revisar políticas y mejorar resultados.",
         ],
       ],
     },
     contact: {
-      title: "Agende una demostración en vivo",
+      title: "Agende una demostración",
       description:
-        "Acceda al formulario y conozca cómo Credex evalúa un cliente en segundos.",
+        "Revise cómo Credex puede apoyar su proceso de evaluación y decisión crediticia.",
       cta: "Agendar demostración personalizada",
-      microcopy: "Coordinamos una demostración adaptada a su negocio.",
+      microcopy: "La demostración se adapta a su operación y objetivos.",
       scopeNote: null,
     },
     seo: {
-      title: "Evaluación crediticia para empresas en Chile | Credex",
+      title: "Evaluación y decisión crediticia para empresas en Chile | Credex",
       description:
-        "Plataforma de evaluación crediticia para empresas en Chile. Automatice decisiones, reduzca incobrables y aumente la aprobación.",
+        "Credex integra información, motores de decisión y analítica para automatizar evaluaciones y gestionar riesgo crediticio.",
     },
   },
   PE: {
@@ -115,10 +115,10 @@ export const COMMERCIAL_COPY = {
     hero: {
       ...GLOBAL_COPY.hero,
       eyebrow: "Credex Perú",
-      title: "Soluciones tecnológicas",
+      title: "Soluciones para evaluación y riesgo",
       highlight: "adaptadas a los procesos de tu empresa",
       description:
-        "Ofrecemos desarrollo de inteligencia artificial, motores de evaluación e integraciones para empresas en Perú.",
+        "Implementamos modelamiento, motores de evaluación e integraciones para procesos financieros y crediticios en Perú.",
       primaryCta: "Solicita una reunión",
       secondaryCta: "Conoce las soluciones",
     },
@@ -128,7 +128,7 @@ export const COMMERCIAL_COPY = {
     },
     seo: {
       ...GLOBAL_COPY.seo,
-      title: "Inteligencia artificial, evaluación e integraciones en Perú | Credex",
+      title: "Modelamiento, evaluación e integraciones en Perú | Credex",
     },
   },
   CO: {
@@ -136,10 +136,10 @@ export const COMMERCIAL_COPY = {
     hero: {
       ...GLOBAL_COPY.hero,
       eyebrow: "Credex Colombia",
-      title: "Soluciones tecnológicas",
+      title: "Soluciones para evaluación y riesgo",
       highlight: "para las necesidades de tu empresa",
       description:
-        "Ofrecemos desarrollo de inteligencia artificial, motores de evaluación e integraciones para empresas en Colombia.",
+        "Implementamos modelamiento, motores de evaluación e integraciones para procesos financieros y crediticios en Colombia.",
       primaryCta: "Conversemos sobre tu necesidad",
       secondaryCta: "Conoce las soluciones",
     },
@@ -150,7 +150,7 @@ export const COMMERCIAL_COPY = {
     },
     seo: {
       ...GLOBAL_COPY.seo,
-      title: "Inteligencia artificial, evaluación e integraciones en Colombia | Credex",
+      title: "Modelamiento, evaluación e integraciones en Colombia | Credex",
     },
   },
   AR: {
@@ -163,36 +163,36 @@ export const COMMERCIAL_COPY = {
     hero: {
       ...GLOBAL_COPY.hero,
       eyebrow: "Credex Argentina",
-      title: "Soluciones tecnológicas",
+      title: "Soluciones para evaluación y riesgo",
       highlight: "adaptadas a la operación de tu empresa",
       description:
-        "Ofrecemos desarrollo de inteligencia artificial, motores de evaluación e integraciones para empresas en Argentina.",
+        "Implementamos modelamiento, motores de evaluación e integraciones para procesos financieros y crediticios en Argentina.",
       primaryCta: "Contanos qué necesitás resolver",
       secondaryCta: "Conocé las soluciones",
-      microcopy: "Cada proyecto se define según las necesidades de tu empresa.",
+      microcopy: "Cada implementación se define según el proceso, los datos y los objetivos de tu empresa.",
     },
     services: {
       ...GLOBAL_COPY.services,
-      title: "Nuestras líneas de servicio",
+      title: "Soluciones para evaluación y riesgo",
       description:
-        "La oferta de Credex en Argentina se concentra en tres líneas de trabajo.",
+        "La oferta de Credex en Argentina se concentra en modelamiento, motores de evaluación e integraciones.",
     },
     contact: {
       ...GLOBAL_COPY.contact,
       title: "Contanos qué necesitás resolver",
       description:
-        "Contanos qué necesita tu empresa y revisaremos si podemos desarrollar una solución adecuada.",
+        "Contanos qué proceso financiero o crediticio necesitás mejorar y evaluaremos el alcance de una solución.",
       cta: "Solicitar contacto",
       microcopy:
-        "El alcance de cada proyecto se define después de una evaluación técnica y comercial.",
+        "La viabilidad de cada proyecto se define después de una evaluación técnica y comercial.",
     },
     closing: {
       ...GLOBAL_COPY.closing,
-      title: "Soluciones sujetas a evaluación",
+      title: "Soluciones definidas según cada operación",
     },
     seo: {
       ...GLOBAL_COPY.seo,
-      title: "Inteligencia artificial, evaluación e integraciones en Argentina | Credex",
+      title: "Modelamiento, evaluación e integraciones en Argentina | Credex",
     },
   },
 };
