@@ -5,17 +5,17 @@ export default function Security() {
 
   const items = [
     {
-      icon: <ShieldCheck className="w-6 h-6 text-orange-500" />,
+      icon: <ShieldCheck className="w-6 h-6 text-primary-500" />,
       title: "Protección de datos",
       desc: "Información resguardada bajo estándares de seguridad y encriptación avanzada."
     },
     {
-      icon: <FileCheck className="w-6 h-6 text-orange-500" />,
+      icon: <FileCheck className="w-6 h-6 text-primary-500" />,
       title: "Cumplimiento normativo",
       desc: "Alineado con regulaciones financieras y mejores prácticas del mercado."
     },
     {
-      icon: <Server className="w-6 h-6 text-orange-500" />,
+      icon: <Server className="w-6 h-6 text-primary-500" />,
       title: "Infraestructura confiable",
       desc: "Plataforma escalable, segura y disponible para operación continua."
     }
@@ -52,7 +52,7 @@ export default function Security() {
               className="group relative p-8 rounded-3xl bg-white border border-gray-200 hover:shadow-xl transition-all duration-300"
             >
 
-              <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-orange-100 mb-6">
+              <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-primary-100 mb-6">
                 {item.icon}
               </div>
 
@@ -64,7 +64,7 @@ export default function Security() {
                 {item.desc}
               </p>
 
-              <div className="absolute bottom-0 left-0 w-0 h-[3px] bg-orange-500 group-hover:w-full transition-all duration-300 rounded-full"></div>
+              <div className="absolute bottom-0 left-0 w-0 h-[3px] bg-primary-500 group-hover:w-full transition-all duration-300 rounded-full"></div>
 
             </div>
           ))}

@@ -31,7 +31,7 @@ export default function EvaluacionCrediticia() {
 
         <p className="text-gray-600">
           Más sobre{" "}
-          <a href="/scoring-crediticio" className="text-orange-500">
+          <a href="/scoring-crediticio" className="text-primary-500">
             scoring crediticio
           </a>
         </p>

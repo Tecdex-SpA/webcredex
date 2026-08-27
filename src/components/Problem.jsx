@@ -4,22 +4,22 @@ import { Database, Clock, TrendingUp, AlertTriangle } from "lucide-react";
 export default function Problem() {
   const items = [
     {
-      icon: <Database className="w-6 h-6 text-orange-400" />,
+      icon: <Database className="w-6 h-6 text-primary-400" />,
       title: "Información dispersa",
       desc: "Datos en múltiples sistemas sin una visión consolidada del cliente."
     },
     {
-      icon: <Clock className="w-6 h-6 text-orange-400" />,
+      icon: <Clock className="w-6 h-6 text-primary-400" />,
       title: "Procesos manuales",
       desc: "Evaluaciones lentas, dependientes de múltiples revisiones humanas."
     },
     {
-      icon: <TrendingUp className="w-6 h-6 text-orange-400" />,
+      icon: <TrendingUp className="w-6 h-6 text-primary-400" />,
       title: "Presión comercial",
       desc: "Necesidad de aprobar rápido sin suficiente información para decidir."
     },
     {
-      icon: <AlertTriangle className="w-6 h-6 text-orange-400" />,
+      icon: <AlertTriangle className="w-6 h-6 text-primary-400" />,
       title: "Riesgo financiero",
       desc: "Exposición a incobrables por falta de control en la evaluación."
     }
@@ -28,7 +28,7 @@ export default function Problem() {
   return (
     <section id="problema" className="py-28 bg-[#1C2543] text-white relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-[420px] h-[420px] bg-orange-500/20 blur-3xl rounded-full" />
+        <div className="absolute -top-40 -right-40 w-[420px] h-[420px] bg-primary-500/20 blur-3xl rounded-full" />
         <div className="absolute -bottom-40 -left-40 w-[420px] h-[420px] bg-blue-500/10 blur-3xl rounded-full" />
       </div>
 
@@ -55,7 +55,7 @@ export default function Problem() {
               key={i}
               className="group relative p-8 rounded-3xl bg-white/10 border border-white/10 hover:bg-white/15 hover:shadow-2xl transition-all duration-300"
             >
-              <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-orange-500/15 mb-6">
+              <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-primary-500/15 mb-6">
                 {item.icon}
               </div>
 
@@ -67,7 +67,7 @@ export default function Problem() {
                 {item.desc}
               </p>
 
-              <div className="absolute bottom-0 left-0 w-0 h-[3px] bg-orange-500 group-hover:w-full transition-all duration-300 rounded-full"></div>
+              <div className="absolute bottom-0 left-0 w-0 h-[3px] bg-primary-500 group-hover:w-full transition-all duration-300 rounded-full"></div>
             </div>
           ))}
         </motion.div>

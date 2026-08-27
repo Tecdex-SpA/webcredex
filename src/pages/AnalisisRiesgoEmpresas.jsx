@@ -22,7 +22,7 @@ export default function AnalisisRiesgoEmpresas() {
           El análisis de riesgo permite anticipar el comportamiento de pago de clientes...
         </p>
 
-        <a href="/#contacto" className="text-orange-500 font-semibold">
+        <a href="/#contacto" className="text-primary-500 font-semibold">
           Solicitar demo →
         </a>
       </section>

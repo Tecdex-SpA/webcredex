@@ -19,7 +19,7 @@ export function TestimonialTop() {
         <div className="flex items-center justify-center gap-5 group">
 
           <div className="relative">
-            <div className="absolute inset-0 rounded-full bg-orange-400 blur-xl opacity-0 group-hover:opacity-30 transition"></div>
+            <div className="absolute inset-0 rounded-full bg-primary-400 blur-xl opacity-0 group-hover:opacity-30 transition"></div>
 
             <img
               src="/aviva.png"
@@ -60,7 +60,7 @@ export function TestimonialBottom() {
         <div className="flex items-center justify-center gap-6 group">
 
           <div className="relative">
-            <div className="absolute inset-0 rounded-full bg-orange-500 blur-2xl opacity-20 group-hover:opacity-40 transition"></div>
+            <div className="absolute inset-0 rounded-full bg-primary-500 blur-2xl opacity-20 group-hover:opacity-40 transition"></div>
 
             <img
               src="/alfonso.png"

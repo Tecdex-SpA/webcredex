@@ -50,7 +50,7 @@ export default function Footer() {
 
           <a
             href="/blog"
-            className="text-orange-400 hover:text-orange-300 transition font-semibold"
+            className="text-primary-400 hover:text-primary-300 transition font-semibold"
           >
             Blog Credex
           </a>

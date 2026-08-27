@@ -31,7 +31,7 @@ export default function ReducirIncobrables() {
 
         <p className="text-gray-600">
           Ver{" "}
-          <a href="/evaluacion-crediticia" className="text-orange-500">evaluación crediticia</a>.
+          <a href="/evaluacion-crediticia" className="text-primary-500">evaluación crediticia</a>.
         </p>
 
       </div>

@@ -11,7 +11,7 @@ export default function NotFound() {
 
       <section className="min-h-[70vh] flex items-center py-28 bg-white">
         <div className="max-w-2xl mx-auto px-6 text-center">
-          <p className="text-sm uppercase tracking-[0.18em] text-orange-500 mb-4">
+          <p className="text-sm uppercase tracking-[0.18em] text-primary-500 mb-4">
             Error 404
           </p>
 
@@ -26,22 +26,22 @@ export default function NotFound() {
 
           <Link
             to="/"
-            className="inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold px-8 py-3 rounded-lg transition"
+            className="inline-block bg-primary-500 hover:bg-primary-600 text-white font-semibold px-8 py-3 rounded-lg transition"
           >
             Ir al inicio
           </Link>
 
           <nav className="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-gray-500">
-            <Link to="/evaluacion-crediticia" className="hover:text-orange-500">
+            <Link to="/evaluacion-crediticia" className="hover:text-primary-500">
               Evaluación crediticia
             </Link>
-            <Link to="/scoring-crediticio" className="hover:text-orange-500">
+            <Link to="/scoring-crediticio" className="hover:text-primary-500">
               Scoring crediticio
             </Link>
-            <Link to="/analisis-riesgo" className="hover:text-orange-500">
+            <Link to="/analisis-riesgo" className="hover:text-primary-500">
               Análisis de riesgo
             </Link>
-            <Link to="/blog" className="hover:text-orange-500">
+            <Link to="/blog" className="hover:text-primary-500">
               Blog
             </Link>
           </nav>

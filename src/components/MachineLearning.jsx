@@ -110,7 +110,7 @@ export default function MachineLearning() {
           </div>
 
           <div className="relative">
-            <div className="absolute inset-0 bg-orange-100/40 blur-2xl rounded-3xl" />
+            <div className="absolute inset-0 bg-primary-100/40 blur-2xl rounded-3xl" />
             <div className="relative bg-white border rounded-2xl shadow-lg p-6">
               <img src="/ml-dashboard.png" alt="Modelamiento, scoring y machine learning para decisiones financieras y crediticias" className="rounded-xl" loading="lazy" />
             </div>
@@ -122,7 +122,7 @@ export default function MachineLearning() {
             const Icon = icons[index];
             return (
               <div key={title} className="p-6 bg-gray-50 rounded-xl border hover:shadow-md transition">
-                <Icon className="w-6 h-6 text-orange-500 mb-3" />
+                <Icon className="w-6 h-6 text-primary-500 mb-3" />
                 <h3 className="font-semibold mb-2 text-gray-900">{title}</h3>
                 <p className="text-sm text-gray-500">{description}</p>
               </div>

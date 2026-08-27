@@ -31,7 +31,7 @@ export default function ScoringCrediticio() {
 
         <p className="text-gray-600">
           Más sobre{" "}
-          <a href="/analisis-riesgo" className="text-orange-500">análisis de riesgo</a>.
+          <a href="/analisis-riesgo" className="text-primary-500">análisis de riesgo</a>.
         </p>
 
       </div>

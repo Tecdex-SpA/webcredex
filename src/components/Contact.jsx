@@ -17,7 +17,7 @@ export default function Contact() {
         </p>
 
         <div className="mb-10 text-center">
-          <button className="rounded-xl bg-orange-500 px-8 py-4 font-semibold text-white transition hover:scale-105">
+          <button className="rounded-xl bg-primary-500 px-8 py-4 font-semibold text-white transition hover:scale-105">
             {content.cta}
           </button>
           <p className="mt-3 text-sm opacity-70">{content.microcopy}</p>

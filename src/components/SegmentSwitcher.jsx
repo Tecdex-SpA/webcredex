@@ -70,8 +70,8 @@ export default function SegmentSwitcher() {
                 className={`flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-medium transition-all duration-300 border
                 ${
                   segment === key
-                    ? "bg-orange-500 text-white border-orange-500 shadow-md scale-105"
-                    : "bg-white text-gray-600 border-gray-200 hover:border-orange-400"
+                    ? "bg-primary-500 text-white border-primary-500 shadow-md scale-105"
+                    : "bg-white text-gray-600 border-gray-200 hover:border-primary-400"
                 }`}
               >
                 <ButtonIcon className="w-5 h-5" />
@@ -91,14 +91,14 @@ export default function SegmentSwitcher() {
         >
 
           {/* FONDO */}
-          <div className="absolute inset-0 bg-orange-100/30 blur-2xl opacity-40"></div>
+          <div className="absolute inset-0 bg-primary-100/30 blur-2xl opacity-40"></div>
 
           <div className="relative">
 
             {/* ICONO */}
             <div className="flex justify-center mb-6">
-              <div className="w-16 h-16 flex items-center justify-center rounded-2xl bg-orange-100">
-                <Icon className="w-8 h-8 text-orange-500" />
+              <div className="w-16 h-16 flex items-center justify-center rounded-2xl bg-primary-100">
+                <Icon className="w-8 h-8 text-primary-500" />
               </div>
             </div>
 

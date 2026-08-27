@@ -31,7 +31,7 @@ export default function MachineLearningCredito() {
 
         <p className="text-gray-600">
           Ver{" "}
-          <a href="/scoring-crediticio" className="text-orange-500">scoring crediticio</a>.
+          <a href="/scoring-crediticio" className="text-primary-500">scoring crediticio</a>.
         </p>
 
       </div>

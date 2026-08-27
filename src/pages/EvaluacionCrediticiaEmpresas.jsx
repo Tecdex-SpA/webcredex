@@ -22,7 +22,7 @@ export default function EvaluacionCrediticiaEmpresas() {
           La evaluación crediticia para empresas es un proceso clave para reducir riesgos financieros y mejorar la toma de decisiones...
         </p>
 
-        <a href="/#contacto" className="text-orange-500 font-semibold">
+        <a href="/#contacto" className="text-primary-500 font-semibold">
           Solicitar demo →
         </a>
       </section>

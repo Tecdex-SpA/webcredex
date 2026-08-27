@@ -77,7 +77,7 @@ export default function Header() {
             })}
           </select>
 
-          <a href={market.clientUrl} target="_blank" rel="noopener noreferrer" className="hidden md:block bg-[#1C2543] text-white px-5 py-2.5 rounded-xl text-sm font-semibold shadow-lg shadow-slate-900/20 border border-white/10 hover:bg-orange-500 hover:shadow-orange-500/30 hover:scale-105 transition-all duration-300">
+          <a href={market.clientUrl} target="_blank" rel="noopener noreferrer" className="hidden md:block bg-[#1C2543] text-white px-5 py-2.5 rounded-xl text-sm font-semibold shadow-lg shadow-slate-900/20 border border-white/10 hover:bg-primary-500 hover:shadow-primary-500/30 hover:scale-105 transition-all duration-300">
             {navigation.clientAccess}
           </a>
         </div>
