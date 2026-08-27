@@ -6,6 +6,7 @@ export default function ReducirIncobrables() {
       <Helmet>
         <title>Cómo reducir incobrables en empresas | Credex</title>
         <meta name="description" content="Estrategias para reducir incobrables y mejorar la evaluación crediticia." />
+        <link rel="canonical" href="https://www.credex.cl/blog/reducir-incobrables" />
       </Helmet>
 
       <div className="pt-32 pb-20 max-w-4xl mx-auto px-6">

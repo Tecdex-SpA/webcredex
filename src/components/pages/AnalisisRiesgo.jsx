@@ -9,7 +9,7 @@ export default function AnalisisRiesgo() {
           name="description"
           content="Analice el riesgo crediticio de sus clientes y reduzca incobrables con Credex."
         />
-        <link rel="canonical" href="https://credex.cl/analisis-riesgo" />
+        <link rel="canonical" href="https://www.credex.cl/analisis-riesgo" />
       </Helmet>
 
       <section className="py-28 bg-white">
