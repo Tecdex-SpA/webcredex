@@ -21,6 +21,126 @@
       ],
       "destination": "https://www.credexapp.com/:path*",
       "permanent": true
+    },
+    {
+      "source": "/portal-de-evaluacion-de-credito",
+      "destination": "/evaluacion-crediticia",
+      "permanent": true
+    },
+    {
+      "source": "/portal-de-evaluacion-de-credito/",
+      "destination": "/evaluacion-crediticia",
+      "permanent": true
+    },
+    {
+      "source": "/modelo-de-admision",
+      "destination": "/evaluacion-crediticia",
+      "permanent": true
+    },
+    {
+      "source": "/modelo-de-admision/",
+      "destination": "/evaluacion-crediticia",
+      "permanent": true
+    },
+    {
+      "source": "/modelo-de-cobranza",
+      "destination": "/blog/reducir-incobrables",
+      "permanent": true
+    },
+    {
+      "source": "/modelo-de-cobranza/",
+      "destination": "/blog/reducir-incobrables",
+      "permanent": true
+    },
+    {
+      "source": "/servicios",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/servicios/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/servicios-de-informacion",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/servicios-de-informacion/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/soluciones-de-software",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/soluciones-de-software/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/soluciones-de-analytics",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/soluciones-de-analytics/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/motor-de-decision",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/motor-de-decision/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/concentrador-de-informacion",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/concentrador-de-informacion/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/tecnologia",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/tecnologia/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/modelo-regulatorio",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/modelo-regulatorio/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/contacto",
+      "destination": "/#contacto",
+      "permanent": true
+    },
+    {
+      "source": "/contacto/",
+      "destination": "/#contacto",
+      "permanent": true
     }
   ],
   "rewrites": [
