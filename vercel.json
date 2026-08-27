@@ -25,8 +25,76 @@
   ],
   "rewrites": [
     {
-      "source": "/(.*)",
-      "destination": "/"
+      "source": "/cl",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/pe",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/co",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/ar",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/evaluacion-crediticia",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/scoring-crediticio",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/analisis-riesgo",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/blog",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/blog/evaluacion-crediticia",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/blog/scoring-crediticio",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/blog/analisis-riesgo",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/blog/reducir-incobrables",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/blog/machine-learning",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/evaluacion-crediticia-empresas",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/scoring-crediticio-chile",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/analisis-riesgo-empresas",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/corfo-escalamiento-2019",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/corfo-consolida-expande-2024",
+      "destination": "/index.html"
     }
   ]
 }
