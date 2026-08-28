@@ -128,6 +128,29 @@
           });
       })();
     </script>
+
+    <!-- Google tag (gtag.js) — GA4 www.credex.cl -->
+    <!--
+      Reemplaza la inyeccion de gtag.js que hace el launcher de Clientify SIN
+      measurement ID (por eso GA4 no recibia hits). Al desplegar esto, el campo
+      de Google Analytics en la configuracion del chatbot de Clientify DEBE
+      quedar VACIO: con los dos, GA4 cuenta cada visita dos veces.
+
+      SPA: las navegaciones internas dependen del enhanced measurement de GA4,
+      que esta activado. VERIFICAR tras el deploy que /evaluacion-crediticia y
+      /blog aparecen en GA4 antes de agregar un page_view manual por useLocation:
+      si el enhanced measurement ya las captura, se duplican.
+
+      Pixel de Meta: pendiente de ID real y de publicar politica de privacidad.
+      No instalar antes de tener ambas cosas.
+    -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-18BH33XVSP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-18BH33XVSP');
+    </script>
   </head>
 
   <body>
