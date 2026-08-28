@@ -100,7 +100,7 @@ export default function Flow() {
           </h3>
 
           <p className="opacity-80">
-            Sin intervención manual, sin fricción y con trazabilidad completa en cada decisión.
+            Sin recopilar antecedentes a mano, sin fricción y con registro de cada decisión.
           </p>
 
         </motion.div>
