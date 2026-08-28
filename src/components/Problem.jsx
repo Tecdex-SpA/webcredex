@@ -26,7 +26,7 @@ export default function Problem() {
   ];
 
   return (
-    <section id="problema" className="py-28 bg-[#1C2543] text-white relative overflow-hidden">
+    <section id="problema" className="py-28 bg-dark text-white relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-40 -right-40 w-[420px] h-[420px] bg-primary-500/20 blur-3xl rounded-full" />
         <div className="absolute -bottom-40 -left-40 w-[420px] h-[420px] bg-blue-500/10 blur-3xl rounded-full" />

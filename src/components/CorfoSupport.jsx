@@ -8,7 +8,7 @@ export default function CorfoSupport() {
             Innovación respaldada por
           </span>
 
-          <h2 className="text-3xl md:text-4xl font-bold text-[#1C2543] mt-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-dark mt-4">
             Programas CORFO
           </h2>
 
@@ -31,7 +31,7 @@ export default function CorfoSupport() {
               className="h-20 mb-6"
             />
 
-            <h3 className="text-2xl font-semibold text-[#1C2543]">
+            <h3 className="text-2xl font-semibold text-dark">
               Escalamiento 2019
             </h3>
 
@@ -51,7 +51,7 @@ export default function CorfoSupport() {
               className="h-20 mb-6"
             />
 
-            <h3 className="text-2xl font-semibold text-[#1C2543]">
+            <h3 className="text-2xl font-semibold text-dark">
               Consolida y Expande 2024
             </h3>
 
