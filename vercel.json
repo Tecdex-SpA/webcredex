@@ -124,12 +124,12 @@
     },
     {
       "source": "/servicios-de-informacion",
-      "destination": "/",
+      "destination": "/evaluacion-crediticia",
       "permanent": true
     },
     {
       "source": "/servicios-de-informacion/",
-      "destination": "/",
+      "destination": "/evaluacion-crediticia",
       "permanent": true
     },
     {
