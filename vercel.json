@@ -53,6 +53,66 @@
       "permanent": true
     },
     {
+      "source": "/motor-de-decision",
+      "destination": "/evaluacion-crediticia",
+      "permanent": true
+    },
+    {
+      "source": "/motor-de-decision/",
+      "destination": "/evaluacion-crediticia",
+      "permanent": true
+    },
+    {
+      "source": "/concentrador-de-informacion",
+      "destination": "/evaluacion-crediticia",
+      "permanent": true
+    },
+    {
+      "source": "/concentrador-de-informacion/",
+      "destination": "/evaluacion-crediticia",
+      "permanent": true
+    },
+    {
+      "source": "/carpeta-tributaria",
+      "destination": "/evaluacion-crediticia",
+      "permanent": true
+    },
+    {
+      "source": "/carpeta-tributaria/",
+      "destination": "/evaluacion-crediticia",
+      "permanent": true
+    },
+    {
+      "source": "/poder-judicial",
+      "destination": "/evaluacion-crediticia",
+      "permanent": true
+    },
+    {
+      "source": "/poder-judicial/",
+      "destination": "/evaluacion-crediticia",
+      "permanent": true
+    },
+    {
+      "source": "/soluciones-de-analytics",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/soluciones-de-analytics/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/tecnologia",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/tecnologia/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
       "source": "/servicios",
       "destination": "/",
       "permanent": true
@@ -83,46 +143,6 @@
       "permanent": true
     },
     {
-      "source": "/soluciones-de-analytics",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/soluciones-de-analytics/",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/motor-de-decision",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/motor-de-decision/",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/concentrador-de-informacion",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/concentrador-de-informacion/",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/tecnologia",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/tecnologia/",
-      "destination": "/",
-      "permanent": true
-    },
-    {
       "source": "/modelo-regulatorio",
       "destination": "/",
       "permanent": true
@@ -134,16 +154,32 @@
     },
     {
       "source": "/contacto",
-      "destination": "/#contacto",
+      "destination": "/",
       "permanent": true
     },
     {
       "source": "/contacto/",
-      "destination": "/#contacto",
+      "destination": "/",
       "permanent": true
     }
   ],
   "rewrites": [
+    {
+      "source": "/trabaja-con-nosotros",
+      "destination": "/api/gone"
+    },
+    {
+      "source": "/trabaja-con-nosotros/",
+      "destination": "/api/gone"
+    },
+    {
+      "source": "/1741-2",
+      "destination": "/api/gone"
+    },
+    {
+      "source": "/1741-2/",
+      "destination": "/api/gone"
+    },
     {
       "source": "/cl",
       "destination": "/index.html"
