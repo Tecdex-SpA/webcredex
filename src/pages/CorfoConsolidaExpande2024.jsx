@@ -15,7 +15,7 @@ export default function CorfoConsolidaExpande2024() {
 
         <img src="/corfo.png" className="h-24 mb-8" />
 
-        <h1 className="text-4xl font-bold text-[#1C2543] mb-8">
+        <h1 className="text-4xl font-bold text-dark mb-8">
           CORFO Consolida y Expande 2024
         </h1>
 

@@ -5,7 +5,7 @@ export default function ScoringCrediticio() {
     <>
       <Helmet>
         <title>Scoring crediticio para empresas | Credex</title>
-        <meta name="description" content="Automatiza decisiones y reduce riesgo con scoring crediticio en tiempo real." />
+        <meta name="description" content="Qué es el scoring crediticio, cómo se construye un modelo y qué necesita para funcionar." />
         <link rel="canonical" href="https://www.credex.cl/blog/scoring-crediticio" />
       </Helmet>
 
@@ -16,17 +16,21 @@ export default function ScoringCrediticio() {
         </h1>
 
         <p className="text-gray-600 mb-4">
-          El scoring crediticio permite evaluar clientes en segundos mediante modelos automatizados.
+          El scoring crediticio ordena a los solicitantes según su riesgo estimado, usando un
+          modelo construido sobre el historial de operaciones anteriores. Traduce muchas
+          variables en un único valor comparable, para que la política de crédito se aplique
+          igual en todos los casos.
         </p>
 
         <h2 className="text-2xl font-semibold mt-8 mb-4">
-          Beneficios
+          Qué resuelve y qué no
         </h2>
 
         <ul className="list-disc pl-6 text-gray-600 mb-6">
-          <li>Decisiones rápidas</li>
-          <li>Mayor precisión</li>
-          <li>Escalabilidad</li>
+          <li>Hace comparables solicitudes que llegan con antecedentes distintos</li>
+          <li>Aplica el mismo criterio a todos los casos, sin depender de quién evalúe</li>
+          <li>No decide por sí solo: el corte de aprobación lo fija la política de cada empresa</li>
+          <li>No corrige datos incompletos ni desactualizados; los arrastra</li>
         </ul>
 
         <p className="text-gray-600">

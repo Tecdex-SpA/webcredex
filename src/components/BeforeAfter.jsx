@@ -10,10 +10,10 @@ export default function BeforeAfter() {
   ];
 
   const after = [
-    "Automatización completa",
+    "Evaluación automatizada de punta a punta",
     "Información consolidada en una sola vista",
     "Decisiones en segundos",
-    "Control total del riesgo"
+    "Criterios de riesgo aplicados de forma consistente"
   ];
 
   return (

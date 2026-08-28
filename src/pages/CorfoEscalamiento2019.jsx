@@ -15,7 +15,7 @@ export default function CorfoEscalamiento2019() {
 
         <img src="/corfo.png" className="h-24 mb-8" />
 
-        <h1 className="text-4xl font-bold text-[#1C2543] mb-8">
+        <h1 className="text-4xl font-bold text-dark mb-8">
           CORFO Escalamiento 2019
         </h1>
 

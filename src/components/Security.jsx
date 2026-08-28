@@ -33,7 +33,7 @@ export default function Security() {
           </h2>
 
           <p className="text-gray-500 text-lg">
-            Diseñado para operar bajo estándares financieros, con control y trazabilidad completa.
+            Controles de acceso, resguardo de la información y registro de cada consulta y decisión.
           </p>
 
         </div>
