@@ -9,7 +9,7 @@ export default function EvaluacionCrediticia() {
           name="description"
           content="Evalúe clientes en segundos y reduzca incobrables. Plataforma de evaluación crediticia para empresas en Chile."
         />
-        <link rel="canonical" href="https://credex.cl/evaluacion-crediticia" />
+        <link rel="canonical" href="https://www.credex.cl/evaluacion-crediticia" />
       </Helmet>
 
       <section className="py-28 bg-white">

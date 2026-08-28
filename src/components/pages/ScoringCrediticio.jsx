@@ -9,7 +9,7 @@ export default function ScoringCrediticio() {
           name="description"
           content="Sistema de scoring crediticio en tiempo real para empresas. Automatice decisiones y reduzca riesgo financiero."
         />
-        <link rel="canonical" href="https://credex.cl/scoring-crediticio" />
+        <link rel="canonical" href="https://www.credex.cl/scoring-crediticio" />
       </Helmet>
 
       <section className="py-28 bg-white">

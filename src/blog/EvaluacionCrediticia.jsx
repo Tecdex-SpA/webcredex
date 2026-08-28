@@ -6,6 +6,7 @@ export default function EvaluacionCrediticia() {
       <Helmet>
         <title>Evaluación crediticia para empresas en Chile | Credex</title>
         <meta name="description" content="Cómo evaluar clientes, reducir incobrables y mejorar decisiones crediticias." />
+        <link rel="canonical" href="https://www.credex.cl/blog/evaluacion-crediticia" />
       </Helmet>
 
       <div className="pt-32 pb-20 max-w-4xl mx-auto px-6">
@@ -30,7 +31,7 @@ export default function EvaluacionCrediticia() {
 
         <p className="text-gray-600">
           Más sobre{" "}
-          <a href="/scoring-crediticio" className="text-orange-500">
+          <a href="/scoring-crediticio" className="text-primary-500">
             scoring crediticio
           </a>
         </p>

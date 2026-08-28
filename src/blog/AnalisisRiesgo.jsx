@@ -6,6 +6,7 @@ export default function AnalisisRiesgo() {
       <Helmet>
         <title>Análisis de riesgo crediticio | Credex</title>
         <meta name="description" content="Reduce riesgo financiero y evita incobrables con análisis de riesgo crediticio." />
+        <link rel="canonical" href="https://www.credex.cl/blog/analisis-riesgo" />
       </Helmet>
 
       <div className="pt-32 pb-20 max-w-4xl mx-auto px-6">
@@ -30,7 +31,7 @@ export default function AnalisisRiesgo() {
 
         <p className="text-gray-600">
           Conozca más sobre{" "}
-          <a href="/evaluacion-crediticia" className="text-orange-500">evaluación crediticia</a>.
+          <a href="/evaluacion-crediticia" className="text-primary-500">evaluación crediticia</a>.
         </p>
 
       </div>

@@ -6,6 +6,7 @@ export default function ScoringCrediticio() {
       <Helmet>
         <title>Scoring crediticio para empresas | Credex</title>
         <meta name="description" content="Automatiza decisiones y reduce riesgo con scoring crediticio en tiempo real." />
+        <link rel="canonical" href="https://www.credex.cl/blog/scoring-crediticio" />
       </Helmet>
 
       <div className="pt-32 pb-20 max-w-4xl mx-auto px-6">
@@ -30,7 +31,7 @@ export default function ScoringCrediticio() {
 
         <p className="text-gray-600">
           Más sobre{" "}
-          <a href="/analisis-riesgo" className="text-orange-500">análisis de riesgo</a>.
+          <a href="/analisis-riesgo" className="text-primary-500">análisis de riesgo</a>.
         </p>
 
       </div>

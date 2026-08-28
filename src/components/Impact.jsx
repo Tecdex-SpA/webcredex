@@ -54,7 +54,7 @@ export default function Impact() {
 
   <a
    href="#contacto"
-   className="inline-block bg-orange-500 text-white px-8 py-4 rounded-xl font-semibold hover:bg-orange-600 hover:scale-105 transition"
+   className="inline-block bg-primary-500 text-white px-8 py-4 rounded-xl font-semibold hover:bg-primary-600 hover:scale-105 transition"
   >
     Agendar demo personalizada
   </a>

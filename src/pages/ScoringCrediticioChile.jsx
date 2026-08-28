@@ -22,7 +22,7 @@ export default function ScoringCrediticioChile() {
           El scoring crediticio permite evaluar el riesgo de clientes mediante modelos automatizados...
         </p>
 
-        <a href="/#contacto" className="text-orange-500 font-semibold">
+        <a href="/#contacto" className="text-primary-500 font-semibold">
           Ver cómo funciona →
         </a>
       </section>

@@ -21,12 +21,236 @@
       ],
       "destination": "https://www.credexapp.com/:path*",
       "permanent": true
+    },
+    {
+      "source": "/portal-de-evaluacion-de-credito",
+      "destination": "/evaluacion-crediticia",
+      "permanent": true
+    },
+    {
+      "source": "/portal-de-evaluacion-de-credito/",
+      "destination": "/evaluacion-crediticia",
+      "permanent": true
+    },
+    {
+      "source": "/modelo-de-admision",
+      "destination": "/evaluacion-crediticia",
+      "permanent": true
+    },
+    {
+      "source": "/modelo-de-admision/",
+      "destination": "/evaluacion-crediticia",
+      "permanent": true
+    },
+    {
+      "source": "/modelo-de-cobranza",
+      "destination": "/blog/reducir-incobrables",
+      "permanent": true
+    },
+    {
+      "source": "/modelo-de-cobranza/",
+      "destination": "/blog/reducir-incobrables",
+      "permanent": true
+    },
+    {
+      "source": "/motor-de-decision",
+      "destination": "/evaluacion-crediticia",
+      "permanent": true
+    },
+    {
+      "source": "/motor-de-decision/",
+      "destination": "/evaluacion-crediticia",
+      "permanent": true
+    },
+    {
+      "source": "/concentrador-de-informacion",
+      "destination": "/evaluacion-crediticia",
+      "permanent": true
+    },
+    {
+      "source": "/concentrador-de-informacion/",
+      "destination": "/evaluacion-crediticia",
+      "permanent": true
+    },
+    {
+      "source": "/carpeta-tributaria",
+      "destination": "/evaluacion-crediticia",
+      "permanent": true
+    },
+    {
+      "source": "/carpeta-tributaria/",
+      "destination": "/evaluacion-crediticia",
+      "permanent": true
+    },
+    {
+      "source": "/poder-judicial",
+      "destination": "/evaluacion-crediticia",
+      "permanent": true
+    },
+    {
+      "source": "/poder-judicial/",
+      "destination": "/evaluacion-crediticia",
+      "permanent": true
+    },
+    {
+      "source": "/soluciones-de-analytics",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/soluciones-de-analytics/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/tecnologia",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/tecnologia/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/servicios",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/servicios/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/servicios-de-informacion",
+      "destination": "/evaluacion-crediticia",
+      "permanent": true
+    },
+    {
+      "source": "/servicios-de-informacion/",
+      "destination": "/evaluacion-crediticia",
+      "permanent": true
+    },
+    {
+      "source": "/soluciones-de-software",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/soluciones-de-software/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/modelo-regulatorio",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/modelo-regulatorio/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/contacto",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/contacto/",
+      "destination": "/",
+      "permanent": true
     }
   ],
   "rewrites": [
     {
-      "source": "/(.*)",
-      "destination": "/"
+      "source": "/trabaja-con-nosotros",
+      "destination": "/api/gone"
+    },
+    {
+      "source": "/trabaja-con-nosotros/",
+      "destination": "/api/gone"
+    },
+    {
+      "source": "/1741-2",
+      "destination": "/api/gone"
+    },
+    {
+      "source": "/1741-2/",
+      "destination": "/api/gone"
+    },
+    {
+      "source": "/cl",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/pe",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/co",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/ar",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/evaluacion-crediticia",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/scoring-crediticio",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/analisis-riesgo",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/blog",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/blog/evaluacion-crediticia",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/blog/scoring-crediticio",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/blog/analisis-riesgo",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/blog/reducir-incobrables",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/blog/machine-learning",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/evaluacion-crediticia-empresas",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/scoring-crediticio-chile",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/analisis-riesgo-empresas",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/corfo-escalamiento-2019",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/corfo-consolida-expande-2024",
+      "destination": "/index.html"
     }
   ]
 }

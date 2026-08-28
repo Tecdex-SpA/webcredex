@@ -26,6 +26,9 @@ import Evaluacion from "./pages/EvaluacionCrediticiaEmpresas";
 import Scoring from "./pages/ScoringCrediticioChile";
 import Riesgo from "./pages/AnalisisRiesgoEmpresas";
 
+// 404
+import NotFound from "./pages/NotFound";
+
 // CORFO
 import CorfoEscalamiento2019 from "./pages/CorfoEscalamiento2019";
 import CorfoConsolidaExpande2024 from "./pages/CorfoConsolidaExpande2024";
@@ -65,6 +68,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             path="/corfo-consolida-expande-2024"
             element={<CorfoConsolidaExpande2024 />}
           />
+
+          {/* Cualquier ruta desconocida en navegación cliente.
+              El 404 con status HTTP real lo sirve public/404.html vía Vercel. */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </HelmetProvider>

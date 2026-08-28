@@ -26,12 +26,12 @@ export default function Services() {
             const Icon = icons[index] || BrainCircuit;
             return (
               <div key={title} className="group relative p-8 rounded-3xl bg-gray-50 border border-gray-200 hover:shadow-xl transition-all duration-300">
-                <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-orange-100 mb-6">
-                  <Icon className="w-6 h-6 text-orange-500" />
+                <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-primary-100 mb-6">
+                  <Icon className="w-6 h-6 text-primary-500" />
                 </div>
                 <h3 className="font-semibold text-lg mb-3 text-gray-900">{title}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed">{desc}</p>
-                <div className="absolute bottom-0 left-0 w-0 h-[3px] bg-orange-500 group-hover:w-full transition-all duration-300 rounded-full" />
+                <div className="absolute bottom-0 left-0 w-0 h-[3px] bg-primary-500 group-hover:w-full transition-all duration-300 rounded-full" />
               </div>
             );
           })}

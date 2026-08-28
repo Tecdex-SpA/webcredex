@@ -6,6 +6,7 @@ export default function MachineLearningCredito() {
       <Helmet>
         <title>Machine Learning en evaluación crediticia | Credex</title>
         <meta name="description" content="Cómo el Machine Learning mejora la evaluación crediticia y reduce riesgo." />
+        <link rel="canonical" href="https://www.credex.cl/blog/machine-learning" />
       </Helmet>
 
       <div className="pt-32 pb-20 max-w-4xl mx-auto px-6">
@@ -30,7 +31,7 @@ export default function MachineLearningCredito() {
 
         <p className="text-gray-600">
           Ver{" "}
-          <a href="/scoring-crediticio" className="text-orange-500">scoring crediticio</a>.
+          <a href="/scoring-crediticio" className="text-primary-500">scoring crediticio</a>.
         </p>
 
       </div>

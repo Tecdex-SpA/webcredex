@@ -9,6 +9,7 @@ export default function Blog() {
           name="description"
           content="Artículos sobre evaluación crediticia, scoring, riesgo financiero y machine learning en crédito."
         />
+        <link rel="canonical" href="https://www.credex.cl/blog" />
       </Helmet>
 
       <div className="pt-32 pb-20 max-w-6xl mx-auto px-6">
