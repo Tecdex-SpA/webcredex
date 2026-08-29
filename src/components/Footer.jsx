@@ -28,7 +28,7 @@ export default function Footer() {
 
         {/* CONTACTO */}
         <div className="flex flex-col gap-4 text-sm md:text-base text-center md:text-left md:border-r md:border-white/15 md:pl-8 md:pr-12">
-          <div>📍 Guardia Vieja 202, oficina 403</div>
+          <div>📍 Guardia Vieja 202, oficina 302</div>
           <div>Providencia, Santiago - Chile</div>
           <div>☎ (56 2) 2 2869 4309</div>
           <div>
