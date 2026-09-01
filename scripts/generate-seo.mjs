@@ -56,6 +56,10 @@ function construirHead(base, seo) {
   const bloque = [
     meta("name", "description", seo.description),
     `    <link rel="canonical" href="${esc(seo.canonical)}" data-rh="true" />`,
+    // Solo las rutas utilitarias declaran robots en el HTML servido. Es lo unico
+    // que lee un rastreador que nunca ejecuta React, y una confirmacion de envio
+    // no tiene por que estar en el indice.
+    ...(seo.noindex ? [meta("name", "robots", "noindex, follow")] : []),
     ...seo.hreflang.map(
       ({ hrefLang, href }) =>
         `    <link rel="alternate" hreflang="${esc(hrefLang)}" href="${esc(href)}" data-rh="true" />`,

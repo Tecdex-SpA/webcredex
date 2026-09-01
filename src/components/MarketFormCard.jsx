@@ -36,6 +36,13 @@ const MARKET_FORM_SECTIONS = {
   },
 };
 
+/**
+ * Ancla del formulario. La usa el CTA de la seccion de contacto para desplazar
+ * hasta aca y dejar el foco puesto. Vive en este archivo porque es la caja que
+ * la declara: si el id se define en dos lados, un dia dejan de coincidir.
+ */
+export const FORM_ANCHOR_ID = "formulario-contacto";
+
 function getMarketFormSection(marketCode) {
   return MARKET_FORM_SECTIONS[marketCode] || MARKET_FORM_SECTIONS.GLOBAL;
 }
@@ -59,7 +66,12 @@ export default function MarketFormCard({ marketCode, title }) {
   return (
     <div
       key={frameKey}
-      className="w-full overflow-hidden rounded-2xl bg-white shadow-2xl shadow-black/20"
+      id={FORM_ANCHOR_ID}
+      // tabIndex -1: no entra en el orden de tabulacion, pero puede recibir foco
+      // por codigo cuando el CTA trae a la persona hasta aca. scroll-mt-28 deja
+      // el aire del header fijo, que si no tapa el borde superior de la tarjeta.
+      tabIndex={-1}
+      className="w-full scroll-mt-28 overflow-hidden rounded-2xl bg-white shadow-2xl shadow-black/20 focus:outline-none focus:ring-4 focus:ring-primary-400"
       data-market={normalizedMarket}
       data-form-id={section.formId}
       aria-label={`Formulario de contacto Credex ${section.marketLabel}`}

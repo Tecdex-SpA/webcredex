@@ -101,7 +101,7 @@ export const COMMERCIAL_COPY = {
       title: "Agende una demostración",
       description:
         "Revise cómo Credex puede apoyar su proceso de evaluación y decisión crediticia.",
-      cta: "Agendar demostración personalizada",
+      cta: "Solicitar una demostración",
       microcopy: "La demostración se adapta a su operación y objetivos.",
       scopeNote: null,
     },

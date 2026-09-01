@@ -635,6 +635,30 @@
     {
       "source": "/corfo-consolida-expande-2024",
       "destination": "/_h/app/corfo-consolida-expande-2024.html"
+    },
+    {
+      "source": "/gracias",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.credex.cl"
+        }
+      ],
+      "destination": "/_h/cl/gracias.html"
+    },
+    {
+      "source": "/gracias",
+      "has": [
+        {
+          "type": "host",
+          "value": "ww2.credex.cl"
+        }
+      ],
+      "destination": "/_h/cl/gracias.html"
+    },
+    {
+      "source": "/gracias",
+      "destination": "/_h/app/gracias.html"
     }
   ]
 }

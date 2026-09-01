@@ -13,8 +13,10 @@ import { readFileSync, writeFileSync } from "node:fs";
 
 const ORIGIN = "https://www.credex.cl";
 
-// Rutas que no van al sitemap de credex.cl
-const EXCLUIDAS = new Set(["*", "/cl", "/pe", "/co", "/ar"]);
+// Rutas que no van al sitemap de credex.cl.
+// /gracias ademas va con noindex: es una confirmacion de envio, no una pagina
+// que alguien deba encontrar en el buscador.
+const EXCLUIDAS = new Set(["*", "/cl", "/pe", "/co", "/ar", "/gracias"]);
 
 const prioridad = (ruta) => {
   if (ruta === "/") return "1.0";
