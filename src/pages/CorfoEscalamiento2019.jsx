@@ -1,15 +1,9 @@
-import { Helmet } from "react-helmet-async";
+import RouteSeo from "../components/RouteSeo";
 
 export default function CorfoEscalamiento2019() {
   return (
     <>
-      <Helmet>
-        <title>CORFO Escalamiento 2019 | Credex</title>
-        <meta
-          name="description"
-          content="Credex fue beneficiario del programa CORFO Escalamiento 2019 para potenciar el crecimiento y expansión de soluciones tecnológicas."
-        />
-      </Helmet>
+      <RouteSeo route="/corfo-escalamiento-2019" />
 
       <div className="max-w-5xl mx-auto px-6 py-20">
 

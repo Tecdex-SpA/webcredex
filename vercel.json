@@ -181,76 +181,460 @@
       "destination": "/api/gone"
     },
     {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.credex.cl"
+        }
+      ],
+      "destination": "/_h/cl/index.html"
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "ww2.credex.cl"
+        }
+      ],
+      "destination": "/_h/cl/index.html"
+    },
+    {
+      "source": "/",
+      "destination": "/_h/app/index.html"
+    },
+    {
       "source": "/cl",
-      "destination": "/index.html"
+      "has": [
+        {
+          "type": "host",
+          "value": "www.credex.cl"
+        }
+      ],
+      "destination": "/_h/cl/cl.html"
+    },
+    {
+      "source": "/cl",
+      "has": [
+        {
+          "type": "host",
+          "value": "ww2.credex.cl"
+        }
+      ],
+      "destination": "/_h/cl/cl.html"
+    },
+    {
+      "source": "/cl",
+      "destination": "/_h/app/cl.html"
     },
     {
       "source": "/pe",
-      "destination": "/index.html"
+      "has": [
+        {
+          "type": "host",
+          "value": "www.credex.cl"
+        }
+      ],
+      "destination": "/_h/cl/pe.html"
+    },
+    {
+      "source": "/pe",
+      "has": [
+        {
+          "type": "host",
+          "value": "ww2.credex.cl"
+        }
+      ],
+      "destination": "/_h/cl/pe.html"
+    },
+    {
+      "source": "/pe",
+      "destination": "/_h/app/pe.html"
     },
     {
       "source": "/co",
-      "destination": "/index.html"
+      "has": [
+        {
+          "type": "host",
+          "value": "www.credex.cl"
+        }
+      ],
+      "destination": "/_h/cl/co.html"
+    },
+    {
+      "source": "/co",
+      "has": [
+        {
+          "type": "host",
+          "value": "ww2.credex.cl"
+        }
+      ],
+      "destination": "/_h/cl/co.html"
+    },
+    {
+      "source": "/co",
+      "destination": "/_h/app/co.html"
     },
     {
       "source": "/ar",
-      "destination": "/index.html"
+      "has": [
+        {
+          "type": "host",
+          "value": "www.credex.cl"
+        }
+      ],
+      "destination": "/_h/cl/ar.html"
+    },
+    {
+      "source": "/ar",
+      "has": [
+        {
+          "type": "host",
+          "value": "ww2.credex.cl"
+        }
+      ],
+      "destination": "/_h/cl/ar.html"
+    },
+    {
+      "source": "/ar",
+      "destination": "/_h/app/ar.html"
     },
     {
       "source": "/evaluacion-crediticia",
-      "destination": "/index.html"
+      "has": [
+        {
+          "type": "host",
+          "value": "www.credex.cl"
+        }
+      ],
+      "destination": "/_h/cl/evaluacion-crediticia.html"
+    },
+    {
+      "source": "/evaluacion-crediticia",
+      "has": [
+        {
+          "type": "host",
+          "value": "ww2.credex.cl"
+        }
+      ],
+      "destination": "/_h/cl/evaluacion-crediticia.html"
+    },
+    {
+      "source": "/evaluacion-crediticia",
+      "destination": "/_h/app/evaluacion-crediticia.html"
     },
     {
       "source": "/scoring-crediticio",
-      "destination": "/index.html"
+      "has": [
+        {
+          "type": "host",
+          "value": "www.credex.cl"
+        }
+      ],
+      "destination": "/_h/cl/scoring-crediticio.html"
+    },
+    {
+      "source": "/scoring-crediticio",
+      "has": [
+        {
+          "type": "host",
+          "value": "ww2.credex.cl"
+        }
+      ],
+      "destination": "/_h/cl/scoring-crediticio.html"
+    },
+    {
+      "source": "/scoring-crediticio",
+      "destination": "/_h/app/scoring-crediticio.html"
     },
     {
       "source": "/analisis-riesgo",
-      "destination": "/index.html"
+      "has": [
+        {
+          "type": "host",
+          "value": "www.credex.cl"
+        }
+      ],
+      "destination": "/_h/cl/analisis-riesgo.html"
+    },
+    {
+      "source": "/analisis-riesgo",
+      "has": [
+        {
+          "type": "host",
+          "value": "ww2.credex.cl"
+        }
+      ],
+      "destination": "/_h/cl/analisis-riesgo.html"
+    },
+    {
+      "source": "/analisis-riesgo",
+      "destination": "/_h/app/analisis-riesgo.html"
     },
     {
       "source": "/blog",
-      "destination": "/index.html"
+      "has": [
+        {
+          "type": "host",
+          "value": "www.credex.cl"
+        }
+      ],
+      "destination": "/_h/cl/blog.html"
+    },
+    {
+      "source": "/blog",
+      "has": [
+        {
+          "type": "host",
+          "value": "ww2.credex.cl"
+        }
+      ],
+      "destination": "/_h/cl/blog.html"
+    },
+    {
+      "source": "/blog",
+      "destination": "/_h/app/blog.html"
     },
     {
       "source": "/blog/evaluacion-crediticia",
-      "destination": "/index.html"
+      "has": [
+        {
+          "type": "host",
+          "value": "www.credex.cl"
+        }
+      ],
+      "destination": "/_h/cl/blog/evaluacion-crediticia.html"
+    },
+    {
+      "source": "/blog/evaluacion-crediticia",
+      "has": [
+        {
+          "type": "host",
+          "value": "ww2.credex.cl"
+        }
+      ],
+      "destination": "/_h/cl/blog/evaluacion-crediticia.html"
+    },
+    {
+      "source": "/blog/evaluacion-crediticia",
+      "destination": "/_h/app/blog/evaluacion-crediticia.html"
     },
     {
       "source": "/blog/scoring-crediticio",
-      "destination": "/index.html"
+      "has": [
+        {
+          "type": "host",
+          "value": "www.credex.cl"
+        }
+      ],
+      "destination": "/_h/cl/blog/scoring-crediticio.html"
+    },
+    {
+      "source": "/blog/scoring-crediticio",
+      "has": [
+        {
+          "type": "host",
+          "value": "ww2.credex.cl"
+        }
+      ],
+      "destination": "/_h/cl/blog/scoring-crediticio.html"
+    },
+    {
+      "source": "/blog/scoring-crediticio",
+      "destination": "/_h/app/blog/scoring-crediticio.html"
     },
     {
       "source": "/blog/analisis-riesgo",
-      "destination": "/index.html"
+      "has": [
+        {
+          "type": "host",
+          "value": "www.credex.cl"
+        }
+      ],
+      "destination": "/_h/cl/blog/analisis-riesgo.html"
+    },
+    {
+      "source": "/blog/analisis-riesgo",
+      "has": [
+        {
+          "type": "host",
+          "value": "ww2.credex.cl"
+        }
+      ],
+      "destination": "/_h/cl/blog/analisis-riesgo.html"
+    },
+    {
+      "source": "/blog/analisis-riesgo",
+      "destination": "/_h/app/blog/analisis-riesgo.html"
     },
     {
       "source": "/blog/reducir-incobrables",
-      "destination": "/index.html"
+      "has": [
+        {
+          "type": "host",
+          "value": "www.credex.cl"
+        }
+      ],
+      "destination": "/_h/cl/blog/reducir-incobrables.html"
+    },
+    {
+      "source": "/blog/reducir-incobrables",
+      "has": [
+        {
+          "type": "host",
+          "value": "ww2.credex.cl"
+        }
+      ],
+      "destination": "/_h/cl/blog/reducir-incobrables.html"
+    },
+    {
+      "source": "/blog/reducir-incobrables",
+      "destination": "/_h/app/blog/reducir-incobrables.html"
     },
     {
       "source": "/blog/machine-learning",
-      "destination": "/index.html"
+      "has": [
+        {
+          "type": "host",
+          "value": "www.credex.cl"
+        }
+      ],
+      "destination": "/_h/cl/blog/machine-learning.html"
+    },
+    {
+      "source": "/blog/machine-learning",
+      "has": [
+        {
+          "type": "host",
+          "value": "ww2.credex.cl"
+        }
+      ],
+      "destination": "/_h/cl/blog/machine-learning.html"
+    },
+    {
+      "source": "/blog/machine-learning",
+      "destination": "/_h/app/blog/machine-learning.html"
     },
     {
       "source": "/evaluacion-crediticia-empresas",
-      "destination": "/index.html"
+      "has": [
+        {
+          "type": "host",
+          "value": "www.credex.cl"
+        }
+      ],
+      "destination": "/_h/cl/evaluacion-crediticia-empresas.html"
+    },
+    {
+      "source": "/evaluacion-crediticia-empresas",
+      "has": [
+        {
+          "type": "host",
+          "value": "ww2.credex.cl"
+        }
+      ],
+      "destination": "/_h/cl/evaluacion-crediticia-empresas.html"
+    },
+    {
+      "source": "/evaluacion-crediticia-empresas",
+      "destination": "/_h/app/evaluacion-crediticia-empresas.html"
     },
     {
       "source": "/scoring-crediticio-chile",
-      "destination": "/index.html"
+      "has": [
+        {
+          "type": "host",
+          "value": "www.credex.cl"
+        }
+      ],
+      "destination": "/_h/cl/scoring-crediticio-chile.html"
+    },
+    {
+      "source": "/scoring-crediticio-chile",
+      "has": [
+        {
+          "type": "host",
+          "value": "ww2.credex.cl"
+        }
+      ],
+      "destination": "/_h/cl/scoring-crediticio-chile.html"
+    },
+    {
+      "source": "/scoring-crediticio-chile",
+      "destination": "/_h/app/scoring-crediticio-chile.html"
     },
     {
       "source": "/analisis-riesgo-empresas",
-      "destination": "/index.html"
+      "has": [
+        {
+          "type": "host",
+          "value": "www.credex.cl"
+        }
+      ],
+      "destination": "/_h/cl/analisis-riesgo-empresas.html"
+    },
+    {
+      "source": "/analisis-riesgo-empresas",
+      "has": [
+        {
+          "type": "host",
+          "value": "ww2.credex.cl"
+        }
+      ],
+      "destination": "/_h/cl/analisis-riesgo-empresas.html"
+    },
+    {
+      "source": "/analisis-riesgo-empresas",
+      "destination": "/_h/app/analisis-riesgo-empresas.html"
     },
     {
       "source": "/corfo-escalamiento-2019",
-      "destination": "/index.html"
+      "has": [
+        {
+          "type": "host",
+          "value": "www.credex.cl"
+        }
+      ],
+      "destination": "/_h/cl/corfo-escalamiento-2019.html"
+    },
+    {
+      "source": "/corfo-escalamiento-2019",
+      "has": [
+        {
+          "type": "host",
+          "value": "ww2.credex.cl"
+        }
+      ],
+      "destination": "/_h/cl/corfo-escalamiento-2019.html"
+    },
+    {
+      "source": "/corfo-escalamiento-2019",
+      "destination": "/_h/app/corfo-escalamiento-2019.html"
     },
     {
       "source": "/corfo-consolida-expande-2024",
-      "destination": "/index.html"
+      "has": [
+        {
+          "type": "host",
+          "value": "www.credex.cl"
+        }
+      ],
+      "destination": "/_h/cl/corfo-consolida-expande-2024.html"
+    },
+    {
+      "source": "/corfo-consolida-expande-2024",
+      "has": [
+        {
+          "type": "host",
+          "value": "ww2.credex.cl"
+        }
+      ],
+      "destination": "/_h/cl/corfo-consolida-expande-2024.html"
+    },
+    {
+      "source": "/corfo-consolida-expande-2024",
+      "destination": "/_h/app/corfo-consolida-expande-2024.html"
     }
   ]
 }

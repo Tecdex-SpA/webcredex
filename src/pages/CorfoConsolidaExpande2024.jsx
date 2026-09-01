@@ -1,15 +1,9 @@
-import { Helmet } from "react-helmet-async";
+import RouteSeo from "../components/RouteSeo";
 
 export default function CorfoConsolidaExpande2024() {
   return (
     <>
-      <Helmet>
-        <title>CORFO Consolida y Expande 2024 | Credex</title>
-        <meta
-          name="description"
-          content="Credex fue beneficiario del programa CORFO Consolida y Expande 2024 para fortalecer capacidades y apoyar procesos de expansión."
-        />
-      </Helmet>
+      <RouteSeo route="/corfo-consolida-expande-2024" />
 
       <div className="max-w-5xl mx-auto px-6 py-20">
 

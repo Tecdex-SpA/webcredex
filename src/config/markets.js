@@ -99,6 +99,10 @@ export function getCurrentMarket(pathname = "/") {
 
   if (explicitMarket.code !== "GLOBAL" || pathname !== "/") return explicitMarket;
 
+  // D14/B4: "credex_market_manual" es SOLO memoria del selector. Elige que
+  // contenido se renderiza para quien ya eligio un mercado a mano; no dispara
+  // ninguna redireccion. La redireccion automatica por IP se elimino de
+  // index.html el 2026-08-29 y no vuelve por aca.
   const savedCode = localStorage.getItem("credex_market_manual");
   if (savedCode && MARKETS[savedCode] && savedCode !== "CL") {
     return MARKETS[savedCode];

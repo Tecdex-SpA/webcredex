@@ -1,17 +1,9 @@
-import { Helmet } from "react-helmet-async";
+import RouteSeo from "../components/RouteSeo";
 
 export default function AnalisisRiesgoEmpresas() {
   return (
     <>
-      <Helmet>
-        <title>Análisis de riesgo crediticio para empresas | Credex</title>
-        <meta name="description" content="Herramienta de análisis de riesgo crediticio para empresas. Anticipe comportamiento de pago y reduzca pérdidas con Credex." />
-        <link rel="canonical" href="https://www.credex.cl/analisis-riesgo-empresas" />
-
-        <meta property="og:title" content="Análisis de riesgo para empresas | Credex" />
-        <meta property="og:description" content="Identifique riesgos financieros con modelos predictivos y automatización." />
-        <meta property="og:url" content="https://www.credex.cl/analisis-riesgo-empresas" />
-      </Helmet>
+      <RouteSeo route="/analisis-riesgo-empresas" />
 
       <section className="py-24 max-w-4xl mx-auto px-6">
         <h1 className="text-4xl font-bold mb-6">

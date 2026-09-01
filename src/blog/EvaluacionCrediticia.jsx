@@ -1,13 +1,9 @@
-import { Helmet } from "react-helmet-async";
+import RouteSeo from "../components/RouteSeo";
 
 export default function EvaluacionCrediticia() {
   return (
     <>
-      <Helmet>
-        <title>Evaluación crediticia para empresas en Chile | Credex</title>
-        <meta name="description" content="Cómo evaluar clientes, reducir incobrables y mejorar decisiones crediticias." />
-        <link rel="canonical" href="https://www.credex.cl/blog/evaluacion-crediticia" />
-      </Helmet>
+      <RouteSeo route="/blog/evaluacion-crediticia" />
 
       <div className="pt-32 pb-20 max-w-4xl mx-auto px-6">
 

@@ -1,13 +1,9 @@
-import { Helmet } from "react-helmet-async";
+import RouteSeo from "../components/RouteSeo";
 
 export default function ReducirIncobrables() {
   return (
     <>
-      <Helmet>
-        <title>Cómo reducir incobrables en empresas | Credex</title>
-        <meta name="description" content="Estrategias para reducir incobrables y mejorar la evaluación crediticia." />
-        <link rel="canonical" href="https://www.credex.cl/blog/reducir-incobrables" />
-      </Helmet>
+      <RouteSeo route="/blog/reducir-incobrables" />
 
       <div className="pt-32 pb-20 max-w-4xl mx-auto px-6">
 
