@@ -88,25 +88,56 @@ export function getMarketFromLocation(pathname = "/", hostname = "", search = ""
   return MARKETS.GLOBAL;
 }
 
+/**
+ * El mercado depende SOLO de la URL (host, ?market= y ruta). Nunca de
+ * localStorage.
+ *
+ * POR QUE. Hasta el 2026-09-01 esta funcion leia "credex_market_manual" cuando
+ * el pathname era "/" y devolvia ese mercado. Efecto: quien alguna vez eligio
+ * Peru en el selector abria https://www.credexapp.com/ y veia el CONTENIDO de
+ * Peru mientras el HTML servido declaraba el canonical, el title y la
+ * description de Internacional. Google nunca lo vio —no tiene localStorage—
+ * pero GA4 si: reportaba el page_title de Internacional para sesiones que
+ * estuvieron leyendo Peru.
+ *
+ * La memoria del selector no desaparecio: ahora la aplica <HomeMarketRoute/>,
+ * que lleva a la persona a la RUTA de su mercado (/pe, /co, /ar). Asi la URL,
+ * el title, el canonical y el contenido dicen los cuatro lo mismo.
+ */
 export function getCurrentMarket(pathname = "/") {
   if (typeof window === "undefined") return getMarketFromLocation(pathname);
 
-  const explicitMarket = getMarketFromLocation(
+  return getMarketFromLocation(
     pathname,
     window.location.hostname,
     window.location.search,
   );
+}
 
-  if (explicitMarket.code !== "GLOBAL" || pathname !== "/") return explicitMarket;
+/**
+ * Mercado que la persona eligio A MANO en el selector del header, si es uno con
+ * ruta propia en este sitio.
+ *
+ * ESTO NO ES GEOLOCALIZACION. No consulta /api/geo ni la IP, no decide por
+ * nadie: devuelve una eleccion explicita que la persona ya hizo con un clic. La
+ * redireccion por IP se borro de index.html el 2026-08-29 y no vuelve por aca.
+ *
+ * Quedan fuera a proposito:
+ *   · CL, que tiene dominio propio (credex.cl) y no una ruta de este sitio.
+ *   · GLOBAL, cuya ruta es "/": no hay a donde llevar a nadie.
+ */
+export function getSavedManualMarket() {
+  if (typeof window === "undefined") return null;
 
-  // D14/B4: "credex_market_manual" es SOLO memoria del selector. Elige que
-  // contenido se renderiza para quien ya eligio un mercado a mano; no dispara
-  // ninguna redireccion. La redireccion automatica por IP se elimino de
-  // index.html el 2026-08-29 y no vuelve por aca.
-  const savedCode = localStorage.getItem("credex_market_manual");
-  if (savedCode && MARKETS[savedCode] && savedCode !== "CL") {
-    return MARKETS[savedCode];
+  try {
+    const savedCode = localStorage.getItem("credex_market_manual");
+    const saved = savedCode ? MARKETS[savedCode] : null;
+
+    if (!saved || saved.code === "CL" || saved.code === "GLOBAL") return null;
+
+    return saved;
+  } catch {
+    // Sin localStorage no hay memoria del selector y no pasa nada mas.
+    return null;
   }
-
-  return explicitMarket;
 }

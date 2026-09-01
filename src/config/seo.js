@@ -145,8 +145,30 @@ export const CONTENT_ROUTES = {
   },
 };
 
+/**
+ * Rutas utilitarias: existen para el visitante, no para Google.
+ *
+ * Se diferencian de CONTENT_ROUTES en dos cosas:
+ *   · van con noindex. Una confirmacion de formulario no tiene por que estar en
+ *     el buscador, y si estuviera, entraria gente sin haber enviado nada.
+ *   · su canonical es AUTORREFERENTE POR HOST, no fijo a credex.cl: el mismo
+ *     formulario se envia desde los dos dominios y cada uno confirma en el suyo.
+ */
+export const UTILITY_ROUTES = {
+  "/gracias": {
+    title: "Solicitud recibida | Credex",
+    description:
+      "Confirmación de que la solicitud de contacto enviada a Credex fue recibida.",
+    noindex: true,
+  },
+};
+
 /** Todas las rutas que el build tiene que prerenderizar, por host. */
-export const ALL_ROUTES = [...MARKET_ROUTES, ...Object.keys(CONTENT_ROUTES)];
+export const ALL_ROUTES = [
+  ...MARKET_ROUTES,
+  ...Object.keys(CONTENT_ROUTES),
+  ...Object.keys(UTILITY_ROUTES),
+];
 
 /** Espeja getMarketFromLocation() de markets.js, sin localStorage. */
 export function marketForRoute(route, hostname = "") {
@@ -167,6 +189,24 @@ export function marketForRoute(route, hostname = "") {
  */
 export function getSeoForRoute(route, hostname = "") {
   const path = route !== "/" && route.endsWith("/") ? route.slice(0, -1) : route;
+  const utility = UTILITY_ROUTES[path];
+
+  if (utility) {
+    const base = isChileHost(hostname) ? SITE_CL : SITE_APP;
+
+    return {
+      market: marketForRoute(path, hostname),
+      title: utility.title,
+      description: utility.description,
+      ogTitle: utility.title,
+      ogDescription: utility.description,
+      ogImage: isChileHost(hostname) ? OG_IMAGE_CL : OG_IMAGE_APP,
+      canonical: `${base}${path}`,
+      hreflang: [],
+      noindex: true,
+    };
+  }
+
   const content = CONTENT_ROUTES[path];
 
   if (content) {
@@ -181,6 +221,7 @@ export function getSeoForRoute(route, hostname = "") {
       canonical,
       // Sin hreflang: estas paginas no tienen equivalente en los otros mercados.
       hreflang: [],
+      noindex: false,
     };
   }
 
@@ -210,5 +251,6 @@ export function getSeoForRoute(route, hostname = "") {
     ogImage: market.isChile ? OG_IMAGE_CL : OG_IMAGE_APP,
     canonical,
     hreflang: emiteHreflang ? HREFLANG : [],
+    noindex: false,
   };
 }

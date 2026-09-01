@@ -7,6 +7,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // HOME Y MERCADOS
 import App from "./App";
+// "/" aplica el mercado guardado en el selector llevando a su ruta (C6).
+import HomeMarketRoute from "./components/HomeMarketRoute";
 
 // LANDINGS
 import EvaluacionCrediticia from "./pages/EvaluacionCrediticia";
@@ -26,6 +28,9 @@ import Evaluacion from "./pages/EvaluacionCrediticiaEmpresas";
 import Scoring from "./pages/ScoringCrediticioChile";
 import Riesgo from "./pages/AnalisisRiesgoEmpresas";
 
+// CONVERSION
+import Gracias from "./pages/Gracias";
+
 // 404
 import NotFound from "./pages/NotFound";
 
@@ -39,6 +44,12 @@ import PrerenderedHeadCleanup from "./components/PrerenderedHeadCleanup";
 import CorfoEscalamiento2019 from "./pages/CorfoEscalamiento2019";
 import CorfoConsolidaExpande2024 from "./pages/CorfoConsolidaExpande2024";
 
+// Captura content_id de la URL DE ENTRADA. Va antes de renderizar: despues, una
+// navegacion interna ya pudo cambiar location.search y la atribucion se perderia.
+import { initAnalytics } from "./lib/analytics";
+
+initAnalytics();
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <HelmetProvider>
@@ -47,7 +58,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <GeoNotice />
 
         <Routes>
-          <Route path="/" element={<App />} />
+          <Route path="/" element={<HomeMarketRoute />} />
           <Route path="/cl" element={<App />} />
           <Route path="/pe" element={<App />} />
           <Route path="/co" element={<App />} />
@@ -77,6 +88,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             path="/corfo-consolida-expande-2024"
             element={<CorfoConsolidaExpande2024 />}
           />
+
+          {/* Destino de la redireccion posterior al envio del formulario de
+              Clientify. Se configura en Clientify, no en el codigo. */}
+          <Route path="/gracias" element={<Gracias />} />
 
           {/* Cualquier ruta desconocida en navegación cliente.
               El 404 con status HTTP real lo sirve public/404.html vía Vercel. */}

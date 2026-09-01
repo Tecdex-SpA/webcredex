@@ -22,6 +22,9 @@ export default function RouteSeo({ route }) {
       <meta name="description" content={seo.description} />
       <link rel="canonical" href={seo.canonical} />
 
+      {/* Solo en rutas utilitarias. El resto conserva el robots que ya emitian. */}
+      {seo.noindex && <meta name="robots" content="noindex, follow" />}
+
       {seo.hreflang.map(({ hrefLang, href }) => (
         <link key={hrefLang} rel="alternate" hrefLang={hrefLang} href={href} />
       ))}
