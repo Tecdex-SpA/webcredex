@@ -98,7 +98,7 @@ export const COMMERCIAL_COPY = {
       ],
     },
     contact: {
-      title: "Agende una demostración",
+      title: "Solicite una demostración",
       description:
         "Revise cómo Credex puede apoyar su proceso de evaluación y decisión crediticia.",
       cta: "Solicitar una demostración",

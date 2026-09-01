@@ -80,6 +80,30 @@ function soloValores(params) {
 }
 
 /**
+ * DEPENDENCIA DE FALLO SILENCIOSO — LEER ANTES DE TOCAR NADA DE ESTO.
+ *
+ * El launcher de Clientify REDEFINE window.gtag con una version propia. Verificado
+ * en produccion en www.credex.cl el 2026-09-01, con el launcher ya cargado:
+ *
+ *     window.gtag                 function gtag(){dataLayer.push(arguments);}
+ *     claves dataLayer en window  ["dataLayer"]        <- una sola
+ *     config en dataLayer         ["config", "G-18BH33XVSP"]
+ *
+ * O sea: la redefinicion empuja al MISMO dataLayer que index.html ya configuro
+ * con nuestro measurement id. Los eventos de este modulo llegan a nuestra
+ * propiedad de GA4 igual, y por eso no hay nada que arreglar hoy.
+ *
+ * EL RIESGO. Si Clientify algun dia empuja a OTRO dataLayer, los eventos
+ * desaparecen sin ningun error visible y trackEvent SEGUIRIA DEVOLVIENDO TRUE:
+ * solo comprueba que gtag EXISTA, no a donde va lo que empuja. Nada en la pagina
+ * ni en la consola avisaria.
+ *
+ * SEÑAL DE ALARMA. Si generate_lead o chat_open_aprox caen a cero de un dia para
+ * otro, lo PRIMERO que hay que revisar es si gtag sigue empujando al mismo
+ * dataLayer, con las tres comprobaciones de arriba.
+ */
+
+/**
  * Emite un evento a GA4. Devuelve true solo si el evento SALIO, para que quien
  * llama pueda distinguir "no se midio" de "se midio". No lanza nunca.
  */
