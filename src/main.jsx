@@ -32,6 +32,9 @@ import NotFound from "./pages/NotFound";
 // Aviso geografico no bloqueante (D14). Global: aplica a todas las rutas.
 import GeoNotice from "./components/GeoNotice";
 
+// Deduplica el <head>: saca lo prerenderizado cuando React ya monto lo suyo.
+import PrerenderedHeadCleanup from "./components/PrerenderedHeadCleanup";
+
 // CORFO
 import CorfoEscalamiento2019 from "./pages/CorfoEscalamiento2019";
 import CorfoConsolidaExpande2024 from "./pages/CorfoConsolidaExpande2024";
@@ -40,6 +43,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <HelmetProvider>
       <BrowserRouter>
+        <PrerenderedHeadCleanup />
         <GeoNotice />
 
         <Routes>
