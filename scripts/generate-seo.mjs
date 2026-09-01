@@ -21,7 +21,7 @@
  *   node scripts/generate-seo.mjs          genera y VERIFICA vercel.json (falla si no calza)
  *   node scripts/generate-seo.mjs --sync   reescribe los rewrites de vercel.json
  */
-import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, rmSync } from "node:fs";
 import { dirname } from "node:path";
 import { ALL_ROUTES, getSeoForRoute } from "../src/config/seo.js";
 
@@ -74,6 +74,30 @@ function construirHead(base, seo) {
   return html.replace("  </head>", `${bloque}\n  </head>`);
 }
 
+/**
+ * Toda ruta del router necesita fila en la tabla. Si alguien agrega una ruta y
+ * se olvida de seo.js, sin esta comprobacion la ruta responderia 404 en
+ * produccion: al no tener variante prerenderizada no hay rewrite que la sirva,
+ * y desde que se borra dist/index.html tampoco hay fallback.
+ */
+function verificarCoberturaDelRouter() {
+  const router = readFileSync(new URL("../src/main.jsx", import.meta.url), "utf8");
+  const enRouter = [...router.matchAll(/path="([^"]+)"/g)]
+    .map((m) => m[1])
+    .filter((r) => r !== "*");
+
+  const faltan = enRouter.filter((r) => !ALL_ROUTES.includes(r));
+  const sobran = ALL_ROUTES.filter((r) => !enRouter.includes(r));
+
+  if (faltan.length || sobran.length) {
+    throw new Error(
+      "src/config/seo.js no cubre el router de src/main.jsx.\n" +
+        (faltan.length ? `  sin metadatos (responderian 404): ${faltan.join(", ")}\n` : "") +
+        (sobran.length ? `  en la tabla pero no en el router: ${sobran.join(", ")}\n` : ""),
+    );
+  }
+}
+
 function generarArchivos() {
   const base = readFileSync(new URL("index.html", DIST), "utf8");
   for (const prohibida of ['rel="canonical"', 'name="description"', 'property="og:title"']) {
@@ -96,6 +120,14 @@ function generarArchivos() {
       n += 1;
     }
   }
+
+  // Vercel consulta el sistema de archivos ANTES que los rewrites. Mientras
+  // dist/index.html exista, "/" se sirve directo y nunca llega a su regla: la
+  // home quedaria sin canonical y con el title generico. Se borra para que "/"
+  // caiga en el rewrite como el resto de las rutas. Lo que no calce con
+  // ninguna regla lo atiende dist/404.html, que es lo que corresponde.
+  rmSync(new URL("index.html", DIST), { force: true });
+
   return n;
 }
 
@@ -149,6 +181,7 @@ if (resultado.cambio) {
 }
 
 if (!SYNC) {
+  verificarCoberturaDelRouter();
   const n = generarArchivos();
   console.log(`SEO prerenderizado: ${n} variantes (${HOSTS.length} hosts x ${ALL_ROUTES.length} rutas)`);
 }
