@@ -29,6 +29,9 @@ import Riesgo from "./pages/AnalisisRiesgoEmpresas";
 // 404
 import NotFound from "./pages/NotFound";
 
+// Aviso geografico no bloqueante (D14). Global: aplica a todas las rutas.
+import GeoNotice from "./components/GeoNotice";
+
 // CORFO
 import CorfoEscalamiento2019 from "./pages/CorfoEscalamiento2019";
 import CorfoConsolidaExpande2024 from "./pages/CorfoConsolidaExpande2024";
@@ -37,6 +40,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <HelmetProvider>
       <BrowserRouter>
+        <GeoNotice />
+
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/cl" element={<App />} />

@@ -1,16 +1,9 @@
-import { Helmet } from "react-helmet-async";
+import RouteSeo from "../components/RouteSeo";
 
 export default function Blog() {
   return (
     <>
-      <Helmet>
-        <title>Blog evaluación crediticia | Credex</title>
-        <meta
-          name="description"
-          content="Artículos sobre evaluación crediticia, scoring, riesgo financiero y machine learning en crédito."
-        />
-        <link rel="canonical" href="https://www.credex.cl/blog" />
-      </Helmet>
+      <RouteSeo route="/blog" />
 
       <div className="pt-32 pb-20 max-w-6xl mx-auto px-6">
 

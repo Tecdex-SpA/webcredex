@@ -1,13 +1,9 @@
-import { Helmet } from "react-helmet-async";
+import RouteSeo from "../components/RouteSeo";
 
 export default function MachineLearningCredito() {
   return (
     <>
-      <Helmet>
-        <title>Machine Learning en evaluación crediticia | Credex</title>
-        <meta name="description" content="Qué es el machine learning aplicado a la evaluación crediticia, para qué se usa y qué condiciones necesita." />
-        <link rel="canonical" href="https://www.credex.cl/blog/machine-learning" />
-      </Helmet>
+      <RouteSeo route="/blog/machine-learning" />
 
       <div className="pt-32 pb-20 max-w-4xl mx-auto px-6">
 

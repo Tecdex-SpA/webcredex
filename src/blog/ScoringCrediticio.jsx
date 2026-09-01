@@ -1,13 +1,9 @@
-import { Helmet } from "react-helmet-async";
+import RouteSeo from "../components/RouteSeo";
 
 export default function ScoringCrediticio() {
   return (
     <>
-      <Helmet>
-        <title>Scoring crediticio para empresas | Credex</title>
-        <meta name="description" content="Qué es el scoring crediticio, cómo se construye un modelo y qué necesita para funcionar." />
-        <link rel="canonical" href="https://www.credex.cl/blog/scoring-crediticio" />
-      </Helmet>
+      <RouteSeo route="/blog/scoring-crediticio" />
 
       <div className="pt-32 pb-20 max-w-4xl mx-auto px-6">
 

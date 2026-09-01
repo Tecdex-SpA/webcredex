@@ -1,0 +1,154 @@
+/**
+ * Prerenderiza el <head> por (host, ruta) y verifica que vercel.json enrute
+ * cada variante a su archivo.
+ *
+ * POR QUE EXISTE. El mismo deployment sirve dos dominios, y la ruta "/" tiene
+ * canonical distinto segun el host:
+ *     www.credex.cl      -> https://www.credex.cl/
+ *     www.credexapp.com  -> https://www.credexapp.com/
+ * Un unico index.html prerenderizado no puede resolverlo. Se generan dos
+ * variantes por ruta y vercel.json las enruta con "has":[{"type":"host"}].
+ *
+ * POR QUE ESTA OPCION Y NO DOS PROYECTOS VERCEL. La alternativa (b) de la
+ * mision exige crear un proyecto y reasignar dominios, que es justo lo que la
+ * mision prohibe tocar; ademas duplicaria el problema de despliegue que ya
+ * tenemos con la integracion Git.
+ *
+ * FUENTE UNICA DE VERDAD: src/config/seo.js. La misma tabla la consume React
+ * via <RouteSeo/>, asi que lo servido y lo renderizado no pueden divergir.
+ *
+ * MODOS
+ *   node scripts/generate-seo.mjs          genera y VERIFICA vercel.json (falla si no calza)
+ *   node scripts/generate-seo.mjs --sync   reescribe los rewrites de vercel.json
+ */
+import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { dirname } from "node:path";
+import { ALL_ROUTES, getSeoForRoute } from "../src/config/seo.js";
+
+const DIST = new URL("../dist/", import.meta.url);
+const VERCEL_JSON = new URL("../vercel.json", import.meta.url);
+const SYNC = process.argv.includes("--sync");
+
+/**
+ * Grupos de host. Los hostnames van EXACTOS al "has.value" de vercel.json, no
+ * como regex: si un patron no calzara, credex.cl serviria el canonical de
+ * credexapp.com, que es exactamente el bug que este PR existe para arreglar.
+ * Prefiero tres reglas por ruta y cero ambiguedad.
+ */
+const HOSTS = [
+  { grupo: "cl", hostname: "www.credex.cl", hosts: ["www.credex.cl", "ww2.credex.cl"] },
+  { grupo: "app", hostname: "www.credexapp.com", hosts: null }, // fallback sin "has"
+];
+
+const esc = (v) =>
+  String(v).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+
+const archivoDe = (grupo, ruta) =>
+  `/_h/${grupo}${ruta === "/" ? "/index" : ruta}.html`;
+
+function construirHead(base, seo) {
+  // data-rh es el atributo con que react-helmet-async marca lo que administra.
+  // Al emitirlo aca, Helmet reconoce estas etiquetas como propias y las
+  // reemplaza al montar, en vez de agregar un segundo <meta> con otro valor.
+  const meta = (attr, clave, valor) =>
+    `    <meta ${attr}="${clave}" content="${esc(valor)}" data-rh="true" />`;
+
+  const bloque = [
+    meta("name", "description", seo.description),
+    `    <link rel="canonical" href="${esc(seo.canonical)}" data-rh="true" />`,
+    ...seo.hreflang.map(
+      ({ hrefLang, href }) =>
+        `    <link rel="alternate" hreflang="${esc(hrefLang)}" href="${esc(href)}" data-rh="true" />`,
+    ),
+    meta("property", "og:title", seo.ogTitle),
+    meta("property", "og:description", seo.ogDescription),
+    meta("property", "og:url", seo.canonical),
+    meta("property", "og:image", seo.ogImage),
+    meta("name", "twitter:title", seo.ogTitle),
+    meta("name", "twitter:description", seo.ogDescription),
+    meta("name", "twitter:image", seo.ogImage),
+  ].join("\n");
+
+  // El <title> no se duplica: Helmet escribe document.title directamente.
+  const html = base.replace(/<title>[\s\S]*?<\/title>/, `<title>${esc(seo.title)}</title>`);
+  return html.replace("  </head>", `${bloque}\n  </head>`);
+}
+
+function generarArchivos() {
+  const base = readFileSync(new URL("index.html", DIST), "utf8");
+  for (const prohibida of ['rel="canonical"', 'name="description"', 'property="og:title"']) {
+    if (base.includes(prohibida)) {
+      throw new Error(
+        `dist/index.html trae ${prohibida}. Esa etiqueta la emite este script por ` +
+          "(host, ruta); si tambien esta en index.html sin data-rh, Helmet no la " +
+          "reemplaza y el DOM queda con dos valores distintos.",
+      );
+    }
+  }
+
+  let n = 0;
+  for (const { grupo, hostname } of HOSTS) {
+    for (const ruta of ALL_ROUTES) {
+      const seo = getSeoForRoute(ruta, hostname);
+      const destino = new URL(`.${archivoDe(grupo, ruta)}`, DIST);
+      mkdirSync(dirname(destino.pathname), { recursive: true });
+      writeFileSync(destino, construirHead(base, seo));
+      n += 1;
+    }
+  }
+  return n;
+}
+
+/**
+ * Un rewrite por (host, ruta). La regla del host chileno va PRIMERO; la del
+ * dominio internacional queda sin "has" y actua de fallback.
+ */
+function rewritesEsperados() {
+  const reglas = [];
+  for (const ruta of ALL_ROUTES) {
+    for (const { grupo, hosts } of HOSTS) {
+      const destination = archivoDe(grupo, ruta);
+      if (!hosts) {
+        reglas.push({ source: ruta, destination });
+        continue;
+      }
+      for (const host of hosts) {
+        reglas.push({ source: ruta, has: [{ type: "host", value: host }], destination });
+      }
+    }
+  }
+  return reglas;
+}
+
+function sincronizarVercelJson() {
+  const cfg = JSON.parse(readFileSync(VERCEL_JSON, "utf8"));
+
+  // Los rewrites de 410 (api/gone.js) se conservan y van primero.
+  const preservados = cfg.rewrites.filter((r) => r.destination === "/api/gone");
+  const esperados = [...preservados, ...rewritesEsperados()];
+
+  const actuales = JSON.stringify(cfg.rewrites);
+  if (actuales === JSON.stringify(esperados)) return { cambio: false };
+
+  if (!SYNC) {
+    throw new Error(
+      "vercel.json esta desincronizado de src/config/seo.js.\n" +
+        "Cada ruta necesita su rewrite por host o se servira el canonical equivocado.\n" +
+        "Corregir con:  npm run seo:sync",
+    );
+  }
+
+  cfg.rewrites = esperados;
+  writeFileSync(VERCEL_JSON, `${JSON.stringify(cfg, null, 2)}\n`);
+  return { cambio: true, n: esperados.length };
+}
+
+const resultado = sincronizarVercelJson();
+if (resultado.cambio) {
+  console.log(`vercel.json sincronizado: ${resultado.n} rewrites`);
+}
+
+if (!SYNC) {
+  const n = generarArchivos();
+  console.log(`SEO prerenderizado: ${n} variantes (${HOSTS.length} hosts x ${ALL_ROUTES.length} rutas)`);
+}
