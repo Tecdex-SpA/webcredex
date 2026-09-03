@@ -10,6 +10,7 @@ import Problem from "./components/Problem";
 import Impact from "./components/Impact";
 import MachineLearning from "./components/MachineLearning";
 import Contact from "./components/Contact";
+import TestimonialEuroCapital from "./components/TestimonialEuroCapital";
 import Footer from "./components/Footer";
 import CorfoSupport from "./components/CorfoSupport";
 import { getCurrentMarket } from "./config/markets";
@@ -184,6 +185,11 @@ export default function App() {
           <SegmentSwitcher />
           <Problem />
           <Impact />
+          {/* Va justo despues de Impact, no al final de la pagina: es una persona
+              con el cargo exacto del comprador objetivo, y sigue a la seccion que
+              declara las capacidades. Ademas hereda su registro: Impact dice "no
+              publicamos porcentajes prestados" y esta cita no trae ninguna cifra. */}
+          <TestimonialEuroCapital />
         </>
       )}
 
