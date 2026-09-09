@@ -1,3 +1,39 @@
+/**
+ * ============================================================================
+ * NO MONTAR ESTE COMPONENTE.  Anotado el 2026-09-01.
+ * ============================================================================
+ *
+ * Hoy este archivo NO SE MONTA EN NINGUNA PARTE, y asi debe seguir. Una sola
+ * linea en App.jsx publica los TRECE nombres y los TRECE logos de golpe.
+ *
+ * POR QUE. NINGUNA de las empresas nombradas aca tiene autorizacion escrita
+ * para ser nombrada por Credex. Tener contrato NO es tener autorizacion para
+ * usar el nombre en material publico: son dos cosas distintas.
+ *
+ * Y CITAR EL NOMBRE NO ES USAR EL LOGO. Son dos permisos separados y hay que
+ * pedirlos por separado. Este componente hace las dos cosas a la vez, para
+ * trece empresas.
+ *
+ * KAVAK, ADEMAS, ESTA RESTRINGIDO: tiene una restriccion contractual cuyo
+ * alcance nadie ha leido todavia. Hasta que alguien la lea, no se publica.
+ *
+ * QUE HACE FALTA PARA MONTARLO. Autorizacion escrita de CADA empresa que
+ * quede en la lista, cubriendo el nombre Y el logo por separado. Lo que no
+ * tenga las dos autorizaciones, sale de la lista antes de montar nada.
+ *
+ * A la fecha de este comentario, la unica autorizacion escrita que existe es la
+ * de EuroCapital, y cubre SOLO citar el testimonio con nombre, cargo y empresa,
+ * NO su logo. Esa autorizacion ya esta publicada en
+ * src/components/TestimonialEuroCapital.jsx y no habilita nada de este archivo.
+ *
+ * REVISAR TAMBIEN EL TEXTO, no solo los permisos. La bajada dice "Más de 20
+ * empresas utilizan nuestra plataforma" y la lista tiene trece nombres, cuando
+ * los clientes con contrato son ocho (Mario, 2026-09-01). Sea cual sea la cifra
+ * correcta, hay que verificarla antes de publicarla: no basta con conseguir las
+ * autorizaciones.
+ *
+ * No se borra: se deja anotado. Este proyecto no borra nada.
+ */
 export default function Clients() {
 
   const clients = [
