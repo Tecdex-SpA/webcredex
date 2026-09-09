@@ -29,6 +29,7 @@ import {
   getSeoForRoute,
   sitemapEntriesForHost,
 } from "../src/config/seo.js";
+import { structuredDataForRoute } from "../src/config/structuredData.js";
 
 const DIST = new URL("../dist/", import.meta.url);
 const VERCEL_JSON = new URL("../vercel.json", import.meta.url);
@@ -57,7 +58,7 @@ const esc = (v) =>
 const archivoDe = (grupo, ruta) =>
   `/_h/${grupo}${ruta === "/" ? "/index" : ruta}.html`;
 
-function construirHead(base, seo) {
+function construirHead(base, seo, ruta, hostname) {
   // data-rh es el atributo con que react-helmet-async marca lo que administra.
   // Al emitirlo aca, Helmet reconoce estas etiquetas como propias y las
   // reemplaza al montar, en vez de agregar un segundo <meta> con otro valor.
@@ -82,6 +83,18 @@ function construirHead(base, seo) {
     meta("name", "twitter:title", seo.ogTitle),
     meta("name", "twitter:description", seo.ogDescription),
     meta("name", "twitter:image", seo.ogImage),
+    // JSON-LD EN EL HTML SERVIDO. Es la razon de ser de este bloque: hasta el
+    // 2026-09-06 el grafo solo existia despues de que React montaba, asi que
+    // ningun rastreador que no ejecute JavaScript veia la entidad Credex.
+    //
+    // Va con data-rh como todo lo demas: <PrerenderedHeadCleanup/> lo quita en
+    // cuanto Helmet monta el suyo, y el DOM no termina con dos grafos.
+    //
+    // "<" escapado a \\u003c para que un valor con "</script>" no pueda cerrar
+    // la etiqueta antes de tiempo. JSON valido igual: \\uXXXX es JSON estandar.
+    `    <script type="application/ld+json" data-rh="true">${JSON.stringify(
+      structuredDataForRoute(ruta, hostname),
+    ).replace(/</g, "\\u003c")}</script>`,
   ].join("\n");
 
   // El <title> no se duplica: Helmet escribe document.title directamente.
@@ -185,7 +198,7 @@ function generarArchivos() {
       const seo = getSeoForRoute(ruta, hostname);
       const destino = new URL(`.${archivoDe(grupo, ruta)}`, DIST);
       mkdirSync(dirname(destino.pathname), { recursive: true });
-      writeFileSync(destino, construirHead(base, seo));
+      writeFileSync(destino, construirHead(base, seo, ruta, hostname));
       n += 1;
     }
   }

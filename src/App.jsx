@@ -15,6 +15,10 @@ import CorfoSupport from "./components/CorfoSupport";
 import { getCurrentMarket } from "./config/markets";
 import { getCommercialCopy } from "./config/commercialCopy";
 import { getSeoForRoute } from "./config/seo";
+import {
+  structuredDataForRoute,
+  toHtmlLanguage,
+} from "./config/structuredData";
 
 const ProductPreview = React.lazy(() => import("./components/ProductPreview"));
 const Flow = React.lazy(() => import("./components/Flow"));
@@ -23,19 +27,6 @@ const Services = React.lazy(() => import("./components/Services"));
 const Security = React.lazy(() => import("./components/Security"));
 
 const OG_LOCALE_ALTERNATES = ["es_CL", "es_PE", "es_CO", "es_AR", "es_419"];
-
-function toHtmlLanguage(locale) {
-  return locale?.replace("_", "-") || "es";
-}
-
-function getAreaServedSchema(market) {
-  if (market.code === "GLOBAL") return "Worldwide";
-
-  return {
-    "@type": "Country",
-    name: market.areaServed,
-  };
-}
 
 export default function App() {
   const location = useLocation();
@@ -51,92 +42,19 @@ export default function App() {
   const ogImage = routeSeo.ogImage;
   const htmlLanguage = toHtmlLanguage(market.locale);
 
-  const seo = {
-    title: routeSeo.title,
-    description: routeSeo.description,
-    serviceType: copy.seo.serviceType,
-    schemaDescription: market.isChile
-      ? "Software para evaluación y decisión crediticia con información financiera, reglas configurables, analítica, scoring y trazabilidad."
-      : "Servicios de modelamiento, scoring, motores de evaluación e integraciones para procesos financieros, crediticios y de riesgo.",
-    category: market.isChile ? "FinanceApplication" : "FinancialService",
-    features: market.isChile
-      ? [
-          "Evaluación crediticia de clientes",
-          "Motor de decisión configurable",
-          "Integración de información financiera",
-          "Gestión de solicitudes",
-          "Analítica y monitoreo de riesgo",
-          "Scoring y modelos predictivos",
-        ]
-      : [
-          "Modelamiento financiero y crediticio",
-          "Scoring y analítica de riesgo",
-          "Motores de evaluación configurables",
-          "Integraciones de información y sistemas",
-          "Modelos predictivos sujetos a disponibilidad de datos",
-        ],
-  };
-
-  const organizationId = "https://www.credexapp.com/#organization";
-  const websiteId = `${canonicalUrl}#website`;
-  const offeringId = `${canonicalUrl}#offering`;
-
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Organization",
-        "@id": organizationId,
-        name: "Credex",
-        url: "https://www.credexapp.com/",
-        logo: "https://www.credexapp.com/logo-credex.png",
-        description:
-          "Credex desarrolla tecnología para evaluación, riesgo y decisiones financieras y crediticias.",
-      },
-      {
-        "@type": "WebSite",
-        "@id": websiteId,
-        url: canonicalUrl,
-        name: market.code === "GLOBAL" ? "Credex" : `Credex ${market.label}`,
-        inLanguage: htmlLanguage,
-        publisher: { "@id": organizationId },
-      },
-      market.isChile
-        ? {
-            "@type": "SoftwareApplication",
-            "@id": offeringId,
-            name: "Credex",
-            url: canonicalUrl,
-            image: ogImage,
-            applicationCategory: seo.category,
-            operatingSystem: "Web",
-            inLanguage: htmlLanguage,
-            description: seo.schemaDescription,
-            featureList: seo.features,
-            provider: { "@id": organizationId },
-            areaServed: getAreaServedSchema(market),
-          }
-        : {
-            "@type": "Service",
-            "@id": offeringId,
-            name: seo.serviceType,
-            url: canonicalUrl,
-            image: ogImage,
-            serviceType: seo.serviceType,
-            inLanguage: htmlLanguage,
-            description: seo.schemaDescription,
-            provider: { "@id": organizationId },
-            areaServed: getAreaServedSchema(market),
-          },
-    ],
-  };
+  // El grafo se calcula con la MISMA funcion que usa scripts/generate-seo.mjs
+  // para prerenderizarlo en el HTML servido. Si divergen, divergen los dos.
+  const structuredData = structuredDataForRoute(
+    location.pathname,
+    typeof window === "undefined" ? "" : window.location.hostname,
+  );
 
   return (
     <>
       <Helmet>
         <html lang={htmlLanguage} />
-        <title>{seo.title}</title>
-        <meta name="description" content={seo.description} />
+        <title>{routeSeo.title}</title>
+        <meta name="description" content={routeSeo.description} />
         <meta name="author" content="Credex" />
         <meta
           name="robots"
