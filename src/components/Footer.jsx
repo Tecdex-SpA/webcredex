@@ -1,3 +1,5 @@
+import { openConsentPreferences } from "../lib/consent";
+
 export default function Footer() {
   return (
     <footer className="bg-[#111C3A] text-white py-10 border-t border-white/10 rounded-t-3xl shadow-2xl">
@@ -54,6 +56,21 @@ export default function Footer() {
           >
             Blog Credex
           </a>
+
+          <a
+            href="/privacidad"
+            className="text-white/80 hover:text-white transition"
+          >
+            Política de privacidad
+          </a>
+
+          <button
+            type="button"
+            onClick={openConsentPreferences}
+            className="text-white/80 hover:text-white transition text-center md:text-left"
+          >
+            Configurar cookies
+          </button>
         </div>
 
       </div>

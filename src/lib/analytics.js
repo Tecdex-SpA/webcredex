@@ -17,6 +17,8 @@
  * garantia de "no romper el render" se pierde en ese punto.
  */
 
+import { CONSENT_EVENT, hasConsent } from "./consent";
+
 /**
  * content_id identifica QUE publicacion trajo la visita. Los utm_* los lee GA4
  * solo; este no, es un parametro propio del proyecto.
@@ -29,6 +31,22 @@ const CONTENT_ID_PARAM = "content_id";
 
 /** Tope defensivo: lo que viene en la URL lo escribe cualquiera. */
 const CONTENT_ID_MAX = 100;
+
+/**
+ * content_id de la URL de entrada mientras la persona no acepta la analitica.
+ * Vive solo en memoria: sin consentimiento no se escribe nada en el navegador.
+ * Si acepta en esta misma carga, se persiste ahi (ver initAnalytics).
+ */
+let contentIdPendiente = null;
+
+function guardarContentId(valor) {
+  try {
+    sessionStorage.setItem(CONTENT_ID_KEY, valor);
+  } catch {
+    // sessionStorage bloqueado (modo privado, cookies de terceros): se sigue sin
+    // atribucion de publicacion. Los eventos se emiten igual, sin content_id.
+  }
+}
 
 function limpiarContentId(valor) {
   if (typeof valor !== "string") return null;
@@ -48,25 +66,32 @@ function limpiarContentId(valor) {
 export function initAnalytics() {
   if (typeof window === "undefined") return;
 
-  try {
-    const entrante = limpiarContentId(
-      new URLSearchParams(window.location.search).get(CONTENT_ID_PARAM),
-    );
+  const entrante = limpiarContentId(
+    new URLSearchParams(window.location.search).get(CONTENT_ID_PARAM),
+  );
 
-    if (entrante) sessionStorage.setItem(CONTENT_ID_KEY, entrante);
-  } catch {
-    // sessionStorage bloqueado (modo privado, cookies de terceros): se sigue sin
-    // atribucion de publicacion. Los eventos se emiten igual, sin content_id.
+  if (!entrante) return;
+
+  if (hasConsent("analytics")) {
+    guardarContentId(entrante);
+    return;
   }
+
+  contentIdPendiente = entrante;
+  window.addEventListener(CONSENT_EVENT, (event) => {
+    // contentIdPendiente se conserva: si sessionStorage esta bloqueado, sigue
+    // siendo la unica copia para el resto de esta carga.
+    if (event.detail?.analytics) guardarContentId(contentIdPendiente);
+  });
 }
 
 export function getContentId() {
   if (typeof window === "undefined") return null;
 
   try {
-    return limpiarContentId(sessionStorage.getItem(CONTENT_ID_KEY));
+    return limpiarContentId(sessionStorage.getItem(CONTENT_ID_KEY)) || contentIdPendiente;
   } catch {
-    return null;
+    return contentIdPendiente;
   }
 }
 
@@ -111,6 +136,9 @@ export function trackEvent(name, params = {}) {
   try {
     if (typeof window === "undefined") return false;
     if (typeof window.gtag !== "function") return false;
+    // Sin consentimiento no se mide. gtag existe igual (index.html lo define
+    // para Consent Mode), asi que este chequeo no lo cubre el de arriba.
+    if (!hasConsent("analytics")) return false;
 
     const contentId = getContentId();
 

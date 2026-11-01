@@ -161,6 +161,16 @@
       "source": "/contacto/",
       "destination": "/",
       "permanent": true
+    },
+    {
+      "source": "/politica-de-privacidad",
+      "destination": "/privacidad",
+      "permanent": true
+    },
+    {
+      "source": "/politica-de-privacidad/",
+      "destination": "/privacidad",
+      "permanent": true
     }
   ],
   "rewrites": [
@@ -659,6 +669,30 @@
     {
       "source": "/gracias",
       "destination": "/_h/app/gracias.html"
+    },
+    {
+      "source": "/privacidad",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.credex.cl"
+        }
+      ],
+      "destination": "/_h/cl/privacidad.html"
+    },
+    {
+      "source": "/privacidad",
+      "has": [
+        {
+          "type": "host",
+          "value": "ww2.credex.cl"
+        }
+      ],
+      "destination": "/_h/cl/privacidad.html"
+    },
+    {
+      "source": "/privacidad",
+      "destination": "/_h/app/privacidad.html"
     },
     {
       "source": "/sitemap.xml",

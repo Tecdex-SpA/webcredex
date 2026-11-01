@@ -60,13 +60,42 @@
 
       Pixel de Meta: pendiente de ID real y de publicar politica de privacidad.
       No instalar antes de tener ambas cosas.
+
+      CONSENTIMIENTO (src/lib/consent.js): Consent Mode en modo BASICO. Todo
+      parte en "denied" y ni gtag.js ni el config de GA4 existen hasta que la
+      persona acepta la analitica. El config va DENTRO de credexActivarAnalitica
+      a proposito: el launcher de Clientify inyecta su propio gtag.js, y si el
+      config ya estuviera en el dataLayer, GA4 mediria a quien acepto solo el
+      chat. La clave y la version tienen que coincidir con consent.js.
     -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-18BH33XVSP"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-18BH33XVSP');
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied'
+      });
+
+      window.credexActivarAnalitica = function () {
+        if (window.__credexAnaliticaActiva) return;
+        window.__credexAnaliticaActiva = true;
+
+        gtag('consent', 'update', { analytics_storage: 'granted' });
+        gtag('js', new Date());
+        gtag('config', 'G-18BH33XVSP');
+
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-18BH33XVSP';
+        document.head.appendChild(s);
+      };
+
+      try {
+        var c = JSON.parse(localStorage.getItem('credex_consent'));
+        if (c && c.v === 1 && c.analytics === true) window.credexActivarAnalitica();
+      } catch (e) {}
     </script>
   </head>
 
