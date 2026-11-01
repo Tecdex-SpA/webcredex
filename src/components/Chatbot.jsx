@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { trackEvent } from "../lib/analytics";
+import { CONSENT_EVENT, hasConsent } from "../lib/consent";
 
 const CLIENTIFY_BOT_ID = "236020";
 const CLIENTIFY_USER_ID = "107027";
@@ -65,9 +66,29 @@ function emitirApertura() {
   return true;
 }
 
+/**
+ * El chat es un servicio de terceros que escribe en el navegador: solo se carga
+ * si la persona lo acepto (src/lib/consent.js). Si acepta con la pagina abierta,
+ * se carga en ese momento, sin recargar.
+ */
+function useConsentimientoChat() {
+  const [permitido, setPermitido] = useState(() => hasConsent("chat"));
+
+  useEffect(() => {
+    const alCambiar = (event) => setPermitido(event.detail?.chat === true);
+    window.addEventListener(CONSENT_EVENT, alCambiar);
+    return () => window.removeEventListener(CONSENT_EVENT, alCambiar);
+  }, []);
+
+  return permitido;
+}
+
 export default function Chatbot() {
+  const permitido = useConsentimientoChat();
+
   useEffect(() => {
     if (typeof window === "undefined" || typeof document === "undefined") return;
+    if (!permitido) return;
 
     // Evita reinicializar Clientify si el componente se monta más de una vez.
     if (window.__credexClientifyLoaded) return;
@@ -104,7 +125,7 @@ export default function Chatbot() {
 
       document.head.appendChild(launcher);
     }
-  }, []);
+  }, [permitido]);
 
   /**
    * Observador de la apertura del chat. Va en su propio efecto para no quedar
@@ -118,7 +139,7 @@ export default function Chatbot() {
    */
   useEffect(() => {
     if (typeof window === "undefined" || typeof document === "undefined") return undefined;
-    if (window[YA_EMITIDO]) return undefined;
+    if (!permitido || window[YA_EMITIDO]) return undefined;
 
     let observadorClase = null;
     const observadorAparicion = new MutationObserver(buscarMarco);
@@ -165,7 +186,7 @@ export default function Chatbot() {
     }
 
     return detener;
-  }, []);
+  }, [permitido]);
 
   return null;
 }

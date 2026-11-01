@@ -31,6 +31,10 @@ import Riesgo from "./pages/AnalisisRiesgoEmpresas";
 // CONVERSION
 import Gracias from "./pages/Gracias";
 
+// PRIVACIDAD Y CONSENTIMIENTO
+import Privacidad from "./pages/Privacidad";
+import ConsentBanner from "./components/ConsentBanner";
+
 // 404
 import NotFound from "./pages/NotFound";
 
@@ -93,10 +97,15 @@ ReactDOM.createRoot(document.getElementById("root")).render(
               Clientify. Se configura en Clientify, no en el codigo. */}
           <Route path="/gracias" element={<Gracias />} />
 
+          <Route path="/privacidad" element={<Privacidad />} />
+
           {/* Cualquier ruta desconocida en navegación cliente.
               El 404 con status HTTP real lo sirve public/404.html vía Vercel. */}
           <Route path="*" element={<NotFound />} />
         </Routes>
+
+        {/* Despues de las rutas: sin consentimiento no se carga GA4 ni el chat. */}
+        <ConsentBanner />
       </BrowserRouter>
     </HelmetProvider>
   </React.StrictMode>,

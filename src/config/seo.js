@@ -183,6 +183,13 @@ export const UTILITY_ROUTES = {
       "Confirmación de que la solicitud de contacto enviada a Credex fue recibida.",
     noindex: true,
   },
+  // noindex mientras el texto este en BORRADOR (ver src/pages/Privacidad.jsx).
+  "/privacidad": {
+    title: "Política de privacidad y cookies | Credex",
+    description:
+      "Cómo Credex trata los datos personales de quienes visitan su sitio y cómo configurar las cookies.",
+    noindex: true,
+  },
 };
 
 /** Todas las rutas que el build tiene que prerenderizar, por host. */
