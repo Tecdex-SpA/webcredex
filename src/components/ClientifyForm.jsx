@@ -8,7 +8,7 @@ const FORM_IDS = {
   AR: "294645",
 };
 
-export function getClientifyFormUrl(marketCode) {
+function getClientifyFormUrl(marketCode) {
   const normalizedMarket = FORM_IDS[marketCode] ? marketCode : "GLOBAL";
   const formId = FORM_IDS[normalizedMarket];
 
